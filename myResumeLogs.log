@@ -1,0 +1,144 @@
+2019-10-11 09:02:16.080  INFO 26152 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 26152 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 09:02:16.087  INFO 26152 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 09:02:17.073  INFO 26152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 09:02:17.105  INFO 26152 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 09:02:17.106  INFO 26152 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 09:02:17.322  INFO 26152 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 09:02:17.336  INFO 26152 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 09:02:17.337  INFO 26152 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1198 ms
+2019-10-11 09:02:17.635  INFO 26152 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 09:02:17.766  INFO 26152 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 09:02:17.939  INFO 26152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 09:02:17.944  INFO 26152 --- [main] com.myresume.MyResume                    : Started MyResume in 2.269 seconds (JVM running for 3.174)
+2019-10-11 09:03:03.244  INFO 26152 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 09:03:03.246  INFO 26152 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 09:03:03.255  INFO 26152 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-10-11 09:03:04.517  WARN 26152 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [567] milliseconds.
+2019-10-11 09:04:02.854  INFO 2388 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 2388 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 09:04:02.858  INFO 2388 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 09:04:04.276  INFO 2388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 09:04:04.319  INFO 2388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 09:04:04.321  INFO 2388 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 09:04:04.652  INFO 2388 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 09:04:04.670  INFO 2388 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 09:04:04.670  INFO 2388 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1761 ms
+2019-10-11 09:04:05.025  INFO 2388 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 09:04:05.142  INFO 2388 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 09:04:05.256  INFO 2388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 09:04:05.263  INFO 2388 --- [main] com.myresume.MyResume                    : Started MyResume in 3.049 seconds (JVM running for 4.633)
+2019-10-11 09:04:47.914  INFO 2388 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 09:04:47.915  INFO 2388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 09:04:47.922  INFO 2388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-10-11 09:04:48.736  WARN 2388 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [336] milliseconds.
+2019-10-11 09:06:18.631  INFO 30740 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 30740 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 09:06:18.635  INFO 30740 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 09:06:19.672  INFO 30740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 09:06:19.704  INFO 30740 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 09:06:19.705  INFO 30740 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 09:06:19.874  INFO 30740 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 09:06:19.884  INFO 30740 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 09:06:19.885  INFO 30740 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1211 ms
+2019-10-11 09:06:20.107  INFO 30740 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 09:06:20.182  INFO 30740 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 09:06:20.252  INFO 30740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 09:06:20.256  INFO 30740 --- [main] com.myresume.MyResume                    : Started MyResume in 1.965 seconds (JVM running for 2.799)
+2019-10-11 09:06:25.983  INFO 30740 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 09:06:25.987  INFO 30740 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 09:06:26.001  INFO 30740 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2019-10-11 09:06:27.222  WARN 30740 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [498] milliseconds.
+2019-10-11 09:07:30.848  INFO 24316 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 24316 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 09:07:30.851  INFO 24316 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 09:07:31.782  INFO 24316 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 09:07:31.829  INFO 24316 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 09:07:31.830  INFO 24316 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 09:07:32.059  INFO 24316 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 09:07:32.070  INFO 24316 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 09:07:32.070  INFO 24316 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1183 ms
+2019-10-11 09:07:32.280  INFO 24316 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 09:07:32.351  INFO 24316 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 09:07:32.424  INFO 24316 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 09:07:32.427  INFO 24316 --- [main] com.myresume.MyResume                    : Started MyResume in 1.897 seconds (JVM running for 2.741)
+2019-10-11 09:07:39.538  INFO 24316 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 09:07:39.540  INFO 24316 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 09:07:39.549  INFO 24316 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-10-11 09:07:40.638  WARN 24316 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [354] milliseconds.
+2019-10-11 09:24:31.329  INFO 30076 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 30076 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 09:24:31.332  INFO 30076 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 09:24:32.208  INFO 30076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 09:24:32.235  INFO 30076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 09:24:32.235  INFO 30076 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 09:24:32.401  INFO 30076 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 09:24:32.413  INFO 30076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 09:24:32.413  INFO 30076 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1031 ms
+2019-10-11 09:24:32.615  INFO 30076 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 09:24:32.687  INFO 30076 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 09:24:32.759  INFO 30076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 09:24:32.763  INFO 30076 --- [main] com.myresume.MyResume                    : Started MyResume in 1.803 seconds (JVM running for 2.7)
+2019-10-11 09:24:52.486  INFO 30076 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 09:24:52.487  INFO 30076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 09:24:52.501  INFO 30076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2019-10-11 09:24:54.005  WARN 30076 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [514] milliseconds.
+2019-10-11 09:27:21.132  INFO 29208 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 29208 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 09:27:21.137  INFO 29208 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 09:27:22.684  INFO 29208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 09:27:22.740  INFO 29208 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 09:27:22.742  INFO 29208 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 09:27:23.070  INFO 29208 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 09:27:23.087  INFO 29208 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 09:27:23.088  INFO 29208 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1890 ms
+2019-10-11 09:27:23.454  INFO 29208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 09:27:23.579  INFO 29208 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 09:27:23.705  INFO 29208 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 09:27:23.711  INFO 29208 --- [main] com.myresume.MyResume                    : Started MyResume in 3.028 seconds (JVM running for 3.856)
+2019-10-11 09:27:23.787  INFO 29208 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 09:27:23.789  INFO 29208 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 09:27:23.804  INFO 29208 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2019-10-11 09:27:25.412  WARN 29208 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [509] milliseconds.
+2019-10-11 23:34:41.361  INFO 33104 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 33104 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 23:34:41.364  INFO 33104 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 23:34:43.148  INFO 33104 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 23:34:43.181  INFO 33104 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 23:34:43.182  INFO 33104 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 23:34:43.420  INFO 33104 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 23:34:43.437  INFO 33104 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 23:34:43.438  INFO 33104 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1979 ms
+2019-10-11 23:34:43.754  INFO 33104 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 23:34:43.889  INFO 33104 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 23:34:44.017  INFO 33104 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 23:34:44.027  INFO 33104 --- [main] com.myresume.MyResume                    : Started MyResume in 3.388 seconds (JVM running for 5.226)
+2019-10-11 23:34:47.433  INFO 33104 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 23:34:47.439  INFO 33104 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 23:34:47.459  INFO 33104 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2019-10-11 23:34:49.003  WARN 33104 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [489] milliseconds.
+2019-10-11 23:35:32.365  INFO 31948 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 31948 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 23:35:32.367  INFO 31948 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 23:35:33.257  INFO 31948 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 23:35:33.285  INFO 31948 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 23:35:33.286  INFO 31948 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 23:35:33.498  INFO 31948 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 23:35:33.508  INFO 31948 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 23:35:33.508  INFO 31948 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1106 ms
+2019-10-11 23:35:33.698  INFO 31948 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 23:35:33.778  INFO 31948 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 23:35:33.850  INFO 31948 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 23:35:33.854  INFO 31948 --- [main] com.myresume.MyResume                    : Started MyResume in 1.827 seconds (JVM running for 2.708)
+2019-10-11 23:35:51.690  INFO 31948 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 23:35:51.692  INFO 31948 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 23:35:51.702  INFO 31948 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-10-11 23:35:53.268  WARN 31948 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [505] milliseconds.
+2019-10-11 23:36:59.873  INFO 27360 --- [main] com.myresume.MyResume                    : Starting MyResume on WINDOWS-FLGF349 with PID 27360 (C:\Dima\Java\courses\my_resume\NewMyResume\target\classes started by User in C:\Dima\Java\courses\my_resume\NewMyResume)
+2019-10-11 23:36:59.878  INFO 27360 --- [main] com.myresume.MyResume                    : No active profile set, falling back to default profiles: default
+2019-10-11 23:37:01.451  INFO 27360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-11 23:37:01.496  INFO 27360 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-11 23:37:01.498  INFO 27360 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-10-11 23:37:01.842  INFO 27360 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-10-11 23:37:01.860  INFO 27360 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-11 23:37:01.861  INFO 27360 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1916 ms
+2019-10-11 23:37:02.215  INFO 27360 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-11 23:37:02.338  INFO 27360 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-11 23:37:02.479  INFO 27360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-11 23:37:02.487  INFO 27360 --- [main] com.myresume.MyResume                    : Started MyResume in 3.279 seconds (JVM running for 4.975)
+2019-10-11 23:37:15.303  INFO 27360 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-11 23:37:15.306  INFO 27360 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-11 23:37:15.317  INFO 27360 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2019-10-11 23:37:17.012  WARN 27360 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [548] milliseconds.
