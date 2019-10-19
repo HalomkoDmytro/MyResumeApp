@@ -11,6 +11,6 @@ public class CustomSiteMashFilter extends ConfigurableSiteMeshFilter {
 
     @Override
     protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
-        builder.addDecoratorPath("/*","/WEB-INF/template/page_template.jsp");
+        builder.addDecoratorPath("/*", "/WEB-INF/template/page_template.jsp");
     }
 }

@@ -1,6 +1,8 @@
 package com.myresume.controller;
 
+import com.myresume.entity.Profile;
 import com.myresume.service.NameService;
+import com.myresume.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,22 +12,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class HelloController {
+public class PublicController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PublicController.class);
 
     @Autowired
     private NameService nameService;
 
-    @GetMapping({"/", "/hello"})
-    public String hello() {
-        LOGGER.info("GET MAPPING: hello");
+    @Autowired
+    private TestService service;
+
+    @GetMapping({"/"})
+    public String index() {
         return "index";
     }
 
     @GetMapping({"/profile"})
     public String profile() {
-//        throw new RuntimeException(); // test purpose
         return "jsp/profile";
     }
 
@@ -36,8 +39,14 @@ public class HelloController {
         return "jsp/profile";
     }
 
-    @GetMapping("/error")
-    public String errorHandler2() {
-        return "jsp/error";
+    @GetMapping(value = "/testProfile")
+    public String testProfile(Model model) {
+        final Profile profile = service.profile();
+
+        model.addAttribute("profile", profile);
+        model.addAttribute("contacts", profile.getContacts());
+
+        return "jsp/profile";
     }
+
 }

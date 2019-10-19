@@ -3,15 +3,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-3 col-sm-6">
+        <div class="col-lg-4 col-sm-6">
             <resume:profile-main/>
             <div class="d-none d-sm-block">
                 <resume:profile-languages/>
                 <resume:profile-hobbies/>
+                <resume:profile-additional-info/>
             </div>
         </div>
 
-        <div class="col-lg-9 col-sm-6">
+        <div class="col-lg-8 col-sm-6">
             <resume:profile-objective/>
             <resume:profile-skills/>
             <resume:profile-practice/>

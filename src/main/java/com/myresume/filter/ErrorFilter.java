@@ -2,7 +2,6 @@ package com.myresume.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,7 +19,7 @@ public class ErrorFilter implements Filter {
 
     private boolean isProduction;
 
-    public ErrorFilter(boolean isProduction){
+    public ErrorFilter(boolean isProduction) {
         this.isProduction = isProduction;
     }
 
