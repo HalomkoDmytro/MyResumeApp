@@ -9,10 +9,8 @@
                 <li>
                     <p><b>${education.faculty}</b></p>
                     <p>${education.university}
-                        <a href="#" class="float-right">${education.beginYear}&nbsp;</a>
-                        <c:if test="${not empty education.finishYear}">
-                            <a href="#" class="float-right">-&nbsp;${education.finishYear}</a>
-                        </c:if>
+                        <a href="#" class="float-right">${education.beginYear}&nbsp;<c:if test="${not empty education.finishYear}">-&nbsp;${education.finishYear}
+                        </c:if></a>
                     </p>
                     <p>${education.summary}</p>
 

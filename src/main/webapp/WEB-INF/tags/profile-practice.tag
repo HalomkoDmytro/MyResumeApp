@@ -11,14 +11,16 @@
                 <li>
                     <p><b>${practic.company}</b></p>
                     <p>${practic.position}
-                        <a href="#" class="float-right">${practic.beginDate}&nbsp;</a>
-                        <c:if test="${not empty practic.finishDate}">
-                            <a href="#" class="float-right">-&nbsp;${practic.finishDate}</a>
-                        </c:if>
+                        <a href="#" class="float-right">${practic.beginDate}&nbsp
+                            <c:if test="${not empty practic.finishDate}">
+                                -&nbsp;${practic.finishDate}
+                            </c:if>
+                        </a>
+
                     </p>
 
                     <p>${practic.responsibilities}</p>
-                    <p><b>Demo: </b><a href="${practic.demo}">${practic.demo}</a> </p>
+                    <p><b>Demo: </b><a href="${practic.demo}">${practic.demo}</a></p>
                 </li>
             </c:forEach>
         </ul>
