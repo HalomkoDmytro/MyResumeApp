@@ -1,8 +1,6 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.myresume.utils.LanguageLevelConverter;
-import com.myresume.utils.LanguageTypeConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,11 +33,11 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
     private String name;
 
     @Column(name = "level")
-    @Convert(converter = LanguageLevelConverter.class)
+    @Convert(converter = LanguageLevel.LanguageLevelConverter.class)
     private LanguageLevel languageLevel;
 
     @Column(name = "type")
-    @Convert(converter = LanguageTypeConverter.class)
+    @Convert(converter = LanguageType.LanguageTypeConverter.class)
     private LanguageType languageType;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,

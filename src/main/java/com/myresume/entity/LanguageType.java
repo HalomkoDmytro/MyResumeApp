@@ -1,5 +1,8 @@
 package com.myresume.entity;
 
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
+
 public enum LanguageType {
 
     ALL,
@@ -26,5 +29,18 @@ public enum LanguageType {
         }
     }
 
+    @Converter
+    public static class LanguageTypeConverter implements AttributeConverter<LanguageType, String> {
+
+        @Override
+        public String convertToDatabaseColumn(LanguageType languageType) {
+            return languageType.toDbValue();
+        }
+
+        @Override
+        public LanguageType convertToEntityAttribute(String s) {
+            return getDbValue(s);
+        }
+    }
 
 }
