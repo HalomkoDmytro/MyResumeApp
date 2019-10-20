@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -23,24 +24,21 @@ public class Education implements Serializable, ProfileCollectionField, Comparab
     private static final long serialVersionUID = 1L;
 
     @Id
+    @SequenceGenerator(name = "EDUCATION_ID_GENERATOR", sequenceName = "EDUCATION_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EDUCATION_ID_GENERATOR")
+    @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column
-    @NotNull
-    @Size(max = 255)
+    @Column(length = 255, nullable = false)
     private String faculty;
 
-    @Column
-    @NotNull
-    @Size(max = 100)
+    @Column(length = 100, nullable = false)
     private String summary;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private String university;
 
-    @Column(name = "begin_year")
-    @NotNull
+    @Column(name = "begin_year", nullable = false)
     private Integer beginYear;
 
     @Column(name = "end_year")

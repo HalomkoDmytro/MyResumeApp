@@ -3,6 +3,7 @@ package com.myresume.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
@@ -10,60 +11,56 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.OrderBy;
+import javax.persistence.SequenceGenerator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 public class Profile {
 
     @Id
+    @SequenceGenerator(name = "PROFILE_ID_GENERATOR", sequenceName = "PROFILE_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_ID_GENERATOR")
+    @Column(unique = true, nullable = false)
     private Long id;
 
     @Column
     private Date birthDay;
 
-    @Column
-    @Size(max = 100)
+    @Column(length = 100)
     private String city;
 
-    @Column
-    @Size(max = 60)
+    @Column(length = 60)
     private String country;
 
-    @Column
-    @NotNull
-    @Size(max = 50)
+    @Column(length = 50, nullable = false)
     private String firstName;
 
-    @Column
-    @NotNull
-    @Size(max = 50)
+    @Column(length = 50, nullable = false)
     private String lastName;
 
     @Column
     private String objective;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String largePhoto;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String smallPhoto;
 
-    @Column
-    @Size(max = 50)
+    @Column(length = 50)
     private String phone;
 
-    @Column
-    @Size(max = 100)
+    @Column(length = 100)
     private String email;
 
     @Column
@@ -72,60 +69,53 @@ public class Profile {
     @Column
     private String summary;
 
-    @Column
-    @NotNull
-    @Size(max = 100)
+    @Column(length = 100, nullable = false)
     private String uid;
 
-    @Column
-    @NotNull
-    @Size(max = 256)
+    @Column(length = 256, nullable = false)
     private String password;
 
     @Column
     private boolean completed;
 
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private Date created;
 
     @OneToMany(targetEntity = Certificate.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Certificate> certificates;
 
     @OneToMany(targetEntity = Education.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OrderBy("finishYear DESC, beginYear DESC, id DESC")
     private List<Education> educations;
 
     @OneToMany(targetEntity = Hobby.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OrderBy("name ASC")
     @JsonManagedReference
     private List<Hobby> hobbies;
 
     @OneToMany(targetEntity = Language.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonManagedReference
     private List<Language> languages;
 
     @OneToMany(targetEntity = Practic.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OrderBy("finishDate DESC")
     @JsonManagedReference
     private List<Practic> practics = new ArrayList<>();
 
     @OneToMany(targetEntity = Skill.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OrderBy("category ASC")
     @JsonManagedReference
     private List<Skill> skills;
 
     @OneToMany(targetEntity = Course.class, mappedBy = "profile", fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OrderBy("finishDate DESC")
     @JsonManagedReference
     private List<Course> courses;
 

@@ -10,11 +10,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 
 @Data
@@ -25,11 +26,12 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
     private static final long serialVersionUID = 1L;
 
     @Id
+    @SequenceGenerator(name = "LANGUAGE_ID_GENERATOR", sequenceName = "LANGUAGE_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LANGUAGE_ID_GENERATOR")
+    @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column
-    @NotNull
-    @Size(max = 30)
+    @Column(length = 30, nullable = false)
     private String name;
 
     @Column(name = "level")

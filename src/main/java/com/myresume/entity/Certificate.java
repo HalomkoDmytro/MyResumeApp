@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 
 @Entity
@@ -22,20 +23,18 @@ public class Certificate implements Serializable, ProfileCollectionField {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @SequenceGenerator(name = "CERTIFICATE_ID_GENERATOR", sequenceName = "CERTIFICATE_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CERTIFICATE_ID_GENERATOR")
+    @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column
-    @NotNull
-    @Size(max = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(name = "large_url")
-    @NotNull
-    @Size(max = 256)
+    @Column(name = "large_url", length = 256, nullable = false)
     private String largeUrl;
 
-    @Column(name = "small_url")
-    @Size(max = 256)
+    @Column(name = "small_url", length = 256)
     private String smallUrl;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,

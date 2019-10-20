@@ -2,44 +2,41 @@ package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "profile")
 @Entity
-public class Course implements Serializable, ProfileCollectionField, Comparable<Course> {
+public class Course extends AbstractFinishDateEntity<Course> implements Serializable, ProfileCollectionField, Comparable<Course> {
 
     private static final long serialVersionUID = 4206575925684228495L;
 
     @Id
+    @SequenceGenerator(name = "COURSE_ID_GENERATOR", sequenceName = "COURSE_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COURSE_ID_GENERATOR")
+    @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column
-    @NotNull
-    @Size(max = 60)
+    @Column(length = 60, nullable = false)
     private String name;
 
-    @Column
-    @NotNull
-    @Size(max = 60)
+    @Column(length = 60, nullable = false)
     private String school;
 
-    @Column(name = "finish_date")
-    private Date finishDate;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profile")
     @JsonBackReference
     private Profile profile;
@@ -56,7 +53,7 @@ public class Course implements Serializable, ProfileCollectionField, Comparable<
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", school='" + school + '\'' +
-                ", finishDate=" + finishDate +
+                ", finishDate=" + getFinishDate() +
                 ", id_profile=" + profile.getId() +
                 '}';
     }

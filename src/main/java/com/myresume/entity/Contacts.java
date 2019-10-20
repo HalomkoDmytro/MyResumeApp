@@ -15,24 +15,19 @@ public class Contacts implements Serializable {
 
     private static final long serialVersionUID = -3685720846934765841L;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String skype;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String facebook;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String linkedin;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String github;
 
-    @Column
-    @Size(max = 100)
+    @Column(length = 100)
     private String telegram;
 
     @Override

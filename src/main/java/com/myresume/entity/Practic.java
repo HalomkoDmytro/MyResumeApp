@@ -7,9 +7,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,9 +23,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "practic")
-public class Practic implements Serializable, ProfileCollectionField, Comparable<Practic> {
+public class Practic extends AbstractFinishDateEntity<Practic> implements Serializable, ProfileCollectionField, Comparable<Practic> {
 
     @Id
+    @SequenceGenerator(name = "PRACTIC_ID_GENERATOR", sequenceName = "PRACTIC_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRACTIC_ID_GENERATOR")
+    @Column(unique = true, nullable = false)
     private Long id;
 
     @Column
@@ -30,28 +36,19 @@ public class Practic implements Serializable, ProfileCollectionField, Comparable
     @Size(max = 100)
     private String position;
 
-    @Column
-    @NotNull
-    @Size(max = 100)
+    @Column(length = 100, nullable = false)
     private String company;
 
-    @Column(name = "begin_date")
-    @NotNull
+    @Column(name = "begin_date", nullable = false)
     private Date beginDate;
 
-    @Column(name = "finish_date")
-    private Date finishDate;
-
-    @Column
-    @NotNull
+    @Column(nullable = false)
     private String responsibilities;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String demo;
 
-    @Column
-    @Size(max = 256)
+    @Column(length = 256)
     private String src;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
@@ -73,7 +70,7 @@ public class Practic implements Serializable, ProfileCollectionField, Comparable
                 ", position='" + position + '\'' +
                 ", company='" + company + '\'' +
                 ", beginDate=" + beginDate +
-                ", finishDate=" + finishDate +
+                ", finishDate=" + getFinishDate() +
                 ", responsibilities='" + responsibilities + '\'' +
                 ", demo='" + demo + '\'' +
                 ", src='" + src + '\'' +
