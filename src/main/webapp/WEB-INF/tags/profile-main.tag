@@ -1,4 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="card border-primary mb-3">
     <img src="../imgages/TrevorEvans.jpg" class="card-img-top"/>
@@ -11,11 +12,21 @@
     </div>
 
     <ul class="list-group list-group-flush" >
-        <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="false"></i> <a><i class="fab fa-affiliatetheme"></i>email&nbsp;</a>${profile.email}</li>
-        <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> <a>phone&nbsp;</a>${profile.phone}</li>
-        <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true"></i> <a>skype&nbsp;</a>${contacts.skype}</li>
-        <li class="list-group-item"><i class="fa fa-github" aria-hidden="true"></i> <a>git&nbsp;</a>${contacts.github}</li>
-        <li class="list-group-item"><i class="fa fa-paper-plane" aria-hidden="true"></i> <a>telegram&nbsp;</a>${contacts.telegram}</li>
-        <li class="list-group-item"><i class="fa fa-facebook-official" aria-hidden="true"></i> <a>facebook&nbsp;</a>${contacts.facebook}</li>
+        <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="false"></i> <a href="tel:${profile.email}"><i class="fab fa-affiliatetheme"></i>email&nbsp;${profile.email}</a></li>
+        <c:if test="${not empty contacts.skype}">
+            <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true"></i> <a>skype&nbsp;</a>${contacts.skype}</li>
+        </c:if>
+        <c:if test="${not empty profile.phone}">
+            <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:${profile.phone}">phone&nbsp;${profile.phone}</a></li>
+        </c:if>
+        <c:if test="${not empty contacts.github}">
+            <li class="list-group-item"><i class="fa fa-github" aria-hidden="true"></i> <a href="${contacts.github}">git&nbsp;${contacts.github}</a></li>
+        </c:if>
+        <c:if test="${not empty contacts.telegram}">
+            <li class="list-group-item"><i class="fa fa-paper-plane" aria-hidden="true"></i> <a>telegram&nbsp;</a>${contacts.telegram}</li>
+        </c:if>
+        <c:if test="${not empty contacts.facebook}">
+            <li class="list-group-item"><i class="fa fa-facebook-official" aria-hidden="true"></i> <a>facebook&nbsp;</a>${contacts.facebook}</li>
+        </c:if>
     </ul>
 </div>
