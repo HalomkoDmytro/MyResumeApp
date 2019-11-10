@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -50,7 +50,21 @@ public class Skill implements Serializable, ProfileCollectionField, Comparable<S
                 "id=" + id +
                 ", category='" + category + '\'' +
                 ", value='" + value + '\'' +
-                ", profile_id=" + profile.getId() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Skill skill = (Skill) o;
+        return Objects.equals(id, skill.id) &&
+                Objects.equals(category, skill.category) &&
+                Objects.equals(value, skill.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, category, value);
     }
 }
