@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -63,6 +64,14 @@ public class Practic extends AbstractFinishDateEntity<Practic> implements Serial
     @JoinColumn(name = "id_profile")
     @JsonBackReference
     private Profile profile;
+
+    public Integer getBeginYear() {
+        return beginDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear();
+    }
+
+    public Integer getBeginMonth() {
+        return beginDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+    }
 
     @Override
     public int compareTo(Practic o) {
