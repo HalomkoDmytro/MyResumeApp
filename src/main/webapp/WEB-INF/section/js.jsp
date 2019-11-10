@@ -3,3 +3,4 @@
 <script src="../static/js/bootstrap.bundle.js"></script>
 <script src="../static/js/bootstrap.js"></script>
 <script src="../static/js/jQuery"></script>
+<script src="../static/js/app.js"></script>
