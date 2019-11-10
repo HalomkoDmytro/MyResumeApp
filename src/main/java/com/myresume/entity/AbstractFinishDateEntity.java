@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
+import java.time.ZoneId;
 import java.util.Date;
 
 @MappedSuperclass
@@ -26,5 +27,13 @@ public abstract class AbstractFinishDateEntity<T> {
     @Transient
     public boolean isFinish() {
         return finishDate != null;
+    }
+
+    public Integer getFinishDateYear() {
+        return finishDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear();
+    }
+
+    public Integer getFinishDateMonth() {
+        return finishDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
     }
 }
