@@ -14,19 +14,19 @@
     <ul class="list-group list-group-flush" >
         <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="false"></i> <a href="tel:${profile.email}"><i class="fab fa-affiliatetheme"></i>email&nbsp;${profile.email}</a></li>
         <c:if test="${not empty contacts.skype}">
-            <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true"></i> <a>skype&nbsp;</a>${contacts.skype}</li>
+            <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true"></i> skype&nbsp;${contacts.skype}</li>
         </c:if>
         <c:if test="${not empty profile.phone}">
-            <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:${profile.phone}">phone&nbsp;${profile.phone}</a></li>
+            <li class="list-group-item"><i class="fa fa-phone" aria-hidden="true"></i> phone<a href="tel:${profile.phone}">&nbsp;${profile.phone}</a></li>
         </c:if>
         <c:if test="${not empty contacts.github}">
-            <li class="list-group-item"><i class="fa fa-github" aria-hidden="true"></i> <a href="${contacts.github}">git&nbsp;${contacts.github}</a></li>
+            <li class="list-group-item"><i class="fa fa-github" aria-hidden="true"></i> git<a href="${contacts.github}">&nbsp;${contacts.github}</a></li>
         </c:if>
         <c:if test="${not empty contacts.telegram}">
-            <li class="list-group-item"><i class="fa fa-paper-plane" aria-hidden="true"></i> <a>telegram&nbsp;</a>${contacts.telegram}</li>
+            <li class="list-group-item"><i class="fa fa-paper-plane" aria-hidden="true"></i> telegram&nbsp;${contacts.telegram}</li>
         </c:if>
         <c:if test="${not empty contacts.facebook}">
-            <li class="list-group-item"><i class="fa fa-facebook-official" aria-hidden="true"></i> <a>facebook&nbsp;</a>${contacts.facebook}</li>
+            <li class="list-group-item"><i class="fa fa-facebook-official" aria-hidden="true"></i> facebook&nbsp;${contacts.facebook}</li>
         </c:if>
     </ul>
 </div>
