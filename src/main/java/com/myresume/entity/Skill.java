@@ -1,6 +1,7 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myresume.annotation.constraints.EnglishLanguage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -28,9 +30,13 @@ public class Skill implements Serializable, ProfileCollectionField, Comparable<S
     private Long id;
 
     @Column(length = 50)
+    @EnglishLanguage
+    @Size(min = 1)
     private String category;
 
     @Column
+    @EnglishLanguage(message = "Use English Language")
+    @Size(min = 1)
     private String value;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,

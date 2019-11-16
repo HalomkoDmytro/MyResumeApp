@@ -1,6 +1,7 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myresume.annotation.constraints.EnglishLanguage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ public class Certificate implements Serializable, ProfileCollectionField {
     private Long id;
 
     @Column(length = 50, nullable = false)
+    @EnglishLanguage
     private String name;
 
     @Column(name = "large_url", length = 256, nullable = false)

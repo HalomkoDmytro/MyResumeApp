@@ -18,6 +18,9 @@ public class EnglishLanguageConstrainValidator implements ConstraintValidator<En
 
     @Override
     public void initialize(EnglishLanguage constraintAnnotation) {
+        this.withNumber = constraintAnnotation.withNumber();
+        this.withSpechSymbols = constraintAnnotation.withSpechSymbols();
+        this.withPunctuations = constraintAnnotation.withPunctuations();
     }
 
     @Override

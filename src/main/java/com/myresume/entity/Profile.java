@@ -2,9 +2,13 @@ package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myresume.annotation.constraints.Adulthood;
+import com.myresume.annotation.constraints.EnglishLanguage;
+import com.myresume.annotation.constraints.Phone;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +21,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,12 +40,15 @@ public class Profile {
     private Long id;
 
     @Column
+    @Adulthood
     private Date birthDay;
 
     @Column(length = 100)
+    @EnglishLanguage(withSpechSymbols = false)
     private String city;
 
     @Column(length = 60)
+    @EnglishLanguage(withSpechSymbols = false, withNumber = false)
     private String country;
 
     @Column(length = 50, nullable = false)
@@ -49,6 +58,9 @@ public class Profile {
     private String lastName;
 
     @Column
+    @NotNull
+    @SafeHtml
+    @EnglishLanguage
     private String objective;
 
     @Column(length = 256)
@@ -58,15 +70,21 @@ public class Profile {
     private String smallPhoto;
 
     @Column(length = 50)
+    @Phone
     private String phone;
 
     @Column(length = 100)
+    @NotNull
+    @EnglishLanguage
+    @Email
     private String email;
 
     @Column
     private String info;
 
     @Column
+    @EnglishLanguage
+    @SafeHtml
     private String summary;
 
     @Column(length = 100, nullable = false)

@@ -1,6 +1,7 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myresume.annotation.constraints.EnglishLanguage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,6 +31,7 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
     private Long id;
 
     @Column(length = 30, nullable = false)
+    @EnglishLanguage(withSpechSymbols = false, withNumber = false, withPunctuations = false)
     private String name;
 
     @Column(name = "level")

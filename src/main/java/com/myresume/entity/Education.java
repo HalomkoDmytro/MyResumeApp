@@ -1,6 +1,8 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myresume.annotation.constraints.EnglishLanguage;
+import com.myresume.annotation.constraints.FirstFieldLessThanSecond;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +22,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @Table(name = "education")
+@FirstFieldLessThanSecond(first = "beginYear", second = "finishYear", message = "Begin date must be before finish date!")
+// TODO: add EnableFormErrorConversion
 public class Education implements Serializable, ProfileCollectionField, Comparable<Education> {
     private static final long serialVersionUID = 1L;
 
@@ -29,13 +33,16 @@ public class Education implements Serializable, ProfileCollectionField, Comparab
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false)
+    @EnglishLanguage(withSpechSymbols = false)
     private String faculty;
 
     @Column(length = 100, nullable = false)
+    @EnglishLanguage(withSpechSymbols = false)
     private String summary;
 
     @Column(nullable = false)
+    @EnglishLanguage(withSpechSymbols = false)
     private String university;
 
     @Column(name = "begin_year", nullable = false)

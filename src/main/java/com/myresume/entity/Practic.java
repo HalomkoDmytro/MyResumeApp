@@ -1,8 +1,11 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myresume.annotation.constraints.EnglishLanguage;
+import com.myresume.annotation.constraints.FirstFieldLessThanSecond;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,6 +28,8 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "practic")
+@FirstFieldLessThanSecond(first = "beginDate", second = "finishDate", message = "")
+// TODO: add EnableFormErrorConversion
 public class Practic extends AbstractFinishDateEntity<Practic> implements Serializable, ProfileCollectionField, Comparable<Practic> {
 
     @Id
@@ -36,9 +41,11 @@ public class Practic extends AbstractFinishDateEntity<Practic> implements Serial
     @Column
     @NotNull
     @Size(max = 100)
+    @EnglishLanguage(withSpechSymbols = false)
     private String position;
 
     @Column(length = 100, nullable = false)
+    @EnglishLanguage(withSpechSymbols = false)
     private String company;
 
     @Column(name = "begin_date", nullable = false)
@@ -51,12 +58,17 @@ public class Practic extends AbstractFinishDateEntity<Practic> implements Serial
     private Integer beginMonth;
 
     @Column(nullable = false)
+    @EnglishLanguage(withSpechSymbols = false)
     private String responsibilities;
 
-    @Column(length = 256)
+    @Column
+    @EnglishLanguage
+    @URL
     private String demo;
 
-    @Column(length = 256)
+    @Column
+    @EnglishLanguage
+    @URL
     private String src;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
