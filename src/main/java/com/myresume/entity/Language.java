@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 @Data
@@ -48,9 +49,16 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
     @JsonBackReference
     private Profile profile;
 
+    @Transient
+    private int ordinal;
+
     @Override
     public int compareTo(Language o) {
         return name.compareToIgnoreCase(o.getName());
+    }
+
+    public int getOrdinal() {
+        return languageLevel.ordinal();
     }
 
     @Override

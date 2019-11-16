@@ -29,7 +29,7 @@
             <div class="col">
                 <b>Level(From Beginner to Proficiency)</b><br>
                 <div class="range">
-                    <input class="form-control" type="range" min="0" max="6" steps="1" value="3">
+                    <input class="form-control" type="range" min="0" max="6" steps="1" value="${language.ordinal}">
                 </div>
 
             </div>
