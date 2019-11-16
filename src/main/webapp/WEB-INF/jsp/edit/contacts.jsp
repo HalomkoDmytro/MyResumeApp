@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="col-7">
-                            <input type="text" value="${contacts.skype}">
+                            <input class="form-control" type="text" value="${contacts.skype}">
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="col-7">
-                            <input type="text" value="${contacts.facebook}">
+                            <input class="form-control" type="text" value="${contacts.facebook}">
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col-7">
-                            <input type="text" value="${contacts.facebook}">
+                            <input class="form-control" type="text" value="${contacts.facebook}">
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="col-7">
-                            <input type="text" value="${contacts.linkedin}">
+                            <input class="form-control" type="text" value="${contacts.linkedin}">
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="col-7">
-                            <input type="text" value="${contacts.github}">
+                            <input class="form-control" type="text" value="${contacts.github}">
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="col-7">
-                            <input type="text" value="${contacts.telegram}">
+                            <input class="form-control" type="text" value="${contacts.telegram}">
                         </div>
                     </div>
                 </div>
