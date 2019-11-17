@@ -1,6 +1,7 @@
 package com.myresume.dao;
 
 import com.myresume.entity.Profile;
+import com.myresume.entity.Skill;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

@@ -1,35 +1,34 @@
 package com.myresume.service;
 
-import com.myresume.dao.ProfileRepository;
-import com.myresume.dao.SkillCategoryRepository;
+import com.myresume.entity.CurrentProfile;
+import com.myresume.entity.Hobby;
+import com.myresume.entity.Language;
+import com.myresume.entity.Practic;
 import com.myresume.entity.Profile;
 import com.myresume.entity.Skill;
 import com.myresume.entity.SkillCategory;
+import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class EditProfileService {
+public interface EditProfileService {
 
-    @Autowired
-    private ProfileRepository profileRepository;
+    Profile createNewProfile(SignUpForm signUpForm);
 
-    @Autowired
-    private SkillCategoryRepository skillCategoryRepository;
+    List<Skill> listSkills(long idProfile);
 
-    public Profile findProfileByUid(String uid) {
-        return profileRepository.findByUid(uid);
-    }
+    List<SkillCategory> listCategories();
 
-    public SkillForm findSkills(String uid) {
-        final List<Skill> skills = profileRepository.findByUid("aly-dutta").getSkills();
-        return new SkillForm(skills);
-    }
+    void updateSkills(long idProfile, List<Skill> skills);
 
-    public List<SkillCategory> findSkillCategory() {
-        return skillCategoryRepository.findAll();
-    }
+    SkillForm findSkillsByUid(String uid);
+
+    List<SkillCategory> findSkillCategory();
+
+    void updateHobbies(long idProfile, List<Hobby> hobbies);
+
+    void updatePractices(long idProfile, List<Practic> practices);
+
+    void updateLanguages(long idProfile, List<Language> practices);
 }
