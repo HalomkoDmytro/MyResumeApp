@@ -1,5 +1,9 @@
 <%@ tag language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<form:form action="/edit/edit-personal-info" method="post" modelAttribute="profile">
 
 <div>
 
@@ -48,9 +52,12 @@
             </div>
 
             <div class="col-7">
-                <input class="form-control" type="date" value="${birthDay}">
+                <form:input path="birthDay" class="form-control datepicker" data-date-format="yyyy-mm-dd" id="inputBirthDay" placeholder="Example: 1990-12-31" required="required"/>
+                <br>
+                <form:errors path="birthDay" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col-3">
+                Birth day date in format: yyyy-mm-dd
             </div>
         </div>
     </div>
@@ -63,7 +70,9 @@
             </div>
 
             <div class="col-7">
-                <input class="form-control" type="text" value="${profile.country}">
+                <form:input path="country" class="form-control" type="text" id="inputCountry" placeholder="Example: Ukraine" required="required"/>
+                <br>
+                <form:errors path="country" cssClass="alert alert-danger" element="div"/>
             </div>
         </div>
     </div>
@@ -74,7 +83,9 @@
             </div>
 
             <div class="col-7">
-                <input class="form-control" type="text" value="${profile.city}">
+                <form:input path="city" class="form-control" type="text" />
+                <br>
+                <form:errors path="city" cssClass="alert alert-danger" element="div"/>
             </div>
         </div>
     </div>
@@ -87,7 +98,9 @@
             </div>
 
             <div class="col-7">
-                <input class="form-control" type="text" value="${profile.email}">
+                <form:input path="email" class="form-control" type="text" />
+                <br>
+                <form:errors path="email" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col-3">
                 Preferred domain is @gamil.com.<br>
@@ -105,7 +118,9 @@
             </div>
 
             <div class="col-7">
-                <input class="form-control" type="text" value="${profile.phone}">
+                <form:input path="phone" class="form-control" type="text" />
+                <br>
+                <form:errors path="phone" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col-3">
                 Should be valid phone number.<br>
@@ -122,7 +137,9 @@
             </div>
 
             <div class="col-7">
-                <input class="form-control" type="text" value="${profile.info}">
+                <form:input path="info" class="form-control" type="text" />
+                <br>
+                <form:errors path="info" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col-3">
                 Looking position.<br>
@@ -137,7 +154,9 @@
                 <p class="text-right"><b>Experience</b></p>
             </div>
             <div class="col-7">
-                <textarea rows="10" class="form-control">${profile.summary}</textarea>
+                <form:textarea path="summary" rows="10" class="form-control"/>
+                <br>
+                <form:errors path="summary" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col-3">
                 Briefly describe you experience in this area.<br>
@@ -150,3 +169,4 @@
         <input type="submit" class="btn btn-primary" value="Save">
     </div>
 </div>
+</form:form>

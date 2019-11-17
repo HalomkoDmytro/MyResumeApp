@@ -21,7 +21,7 @@
         <textarea name="items[${index}].value" class="form-control pull-right" required="required" rows="2">${skill.value }</textarea>
     </div>
 </div>
-<div class="row skill-delim">
+<div class="row">
     <div class="col-xs-5 col-sm-4 col-md-2 form-group">
     </div>
     <div class="col-xs-7 col-sm-8 col-md-10 value-container">

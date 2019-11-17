@@ -21,7 +21,7 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
-public class Skill implements Serializable, ProfileCollectionField, Comparable<Skill> {
+public class Skill implements Serializable, ProfileCollectionField, ProfileEntity, Comparable<Skill> {
 
     @Id
     @SequenceGenerator(name = "SKILL_ID_GENERATOR", sequenceName = "SKILL_SEQ", allocationSize = 1)

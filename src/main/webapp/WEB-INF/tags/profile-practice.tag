@@ -7,7 +7,7 @@
     <div class="card-body ">
 
         <ul class="timeline">
-            <c:forEach var="practic" items="${profile.practics}">
+            <c:forEach var="practic" items="${profile.practices}">
                 <li>
                     <p><b>${practic.company}</b></p>
                     <p>${practic.position}

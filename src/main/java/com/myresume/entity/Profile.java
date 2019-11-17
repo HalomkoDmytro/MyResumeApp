@@ -8,7 +8,7 @@ import com.myresume.annotation.constraints.Phone;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,10 +22,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+//import org.hibernate.validator.constraints.SafeHtml;
 
 @Data
 @NoArgsConstructor
@@ -36,9 +38,9 @@ public class Profile {
     @Id
     @SequenceGenerator(name = "PROFILE_ID_GENERATOR", sequenceName = "PROFILE_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_ID_GENERATOR")
-    @Column(unique = true, nullable = false)
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column
     @Adulthood
     private Date birthDay;
@@ -51,15 +53,15 @@ public class Profile {
     @EnglishLanguage(withSpechSymbols = false, withNumber = false)
     private String country;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String firstName;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String lastName;
 
     @Column
-    @NotNull
-    @SafeHtml
+//    @NotNull
+//    @SafeHtml
     @EnglishLanguage
     private String objective;
 
@@ -74,7 +76,7 @@ public class Profile {
     private String phone;
 
     @Column(length = 100)
-    @NotNull
+    @NotEmpty
     @EnglishLanguage
     @Email
     private String email;
@@ -84,19 +86,19 @@ public class Profile {
 
     @Column
     @EnglishLanguage
-    @SafeHtml
+//    @SafeHtml
     private String summary;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String uid;
 
-    @Column(length = 256, nullable = false)
+    @Column(length = 256)
     private String password;
 
     @Column
     private boolean completed;
 
-    @Column(nullable = false)
+    @Column
     private Date created;
 
     @OneToMany(targetEntity = Certificate.class, mappedBy = "profile", fetch = FetchType.LAZY,
@@ -123,7 +125,7 @@ public class Profile {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OrderBy("finishDate DESC")
     @JsonManagedReference
-    private List<Practic> practics = new ArrayList<>();
+    private List<Practic> practices = new ArrayList<>();
 
     @OneToMany(targetEntity = Skill.class, mappedBy = "profile", fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -141,6 +143,48 @@ public class Profile {
     @Embedded
     private Contacts contacts;
 
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+        updateListSetProfile(this.skills);
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+        updateListSetProfile(this.skills);
+    }
+
+    public void setEducations(List<Education> educations) {
+        this.educations = educations;
+        updateListSetProfile(this.skills);
+    }
+
+    public void setHobbies(List<Hobby> hobbies) {
+        this.hobbies = hobbies;
+        updateListSetProfile(this.skills);
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
+        updateListSetProfile(this.skills);
+    }
+
+    public void setPractices(List<Practic> practices) {
+        this.practices = practices;
+        updateListSetProfile(this.skills);
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+        updateListSetProfile(this.skills);
+    }
+
+    private void updateListSetProfile(List<? extends ProfileEntity> list) {
+        if (list != null) {
+            for (ProfileEntity entity : list) {
+                entity.setProfile(this);
+            }
+        }
+    }
 
     @Override
     public String toString() {

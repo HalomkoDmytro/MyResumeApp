@@ -5,6 +5,7 @@ import com.myresume.entity.LanguageType;
 import com.myresume.entity.Profile;
 import com.myresume.form.SkillForm;
 import com.myresume.service.EditProfileService;
+import com.myresume.service.FindProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +30,39 @@ public class EditProfileController {
     private static final String uid = "bernadette-rostenkowski"; // TODO: refactor/delete
 //    private static final String uid = "aly-dutta"; // TODO: refactor/delete
 
+    @Autowired
+    private FindProfileService findProfileService;
 
     @Autowired
     private EditProfileService editProfileService;
 
-//    @GetMapping("/edit/skills2")
-//    public String getEditSkills(Model model) {
-//        model.addAttribute("skillCategories", skillCategories.findAllByOrderByIdAsc());
-//        return "jsp/edit-skills";
-//    }
-
     @GetMapping(value = "/edit/edit-personal-info")
     public String editProfileGeneral(Model model) throws ParseException {
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("profile", profile);
-        model.addAttribute("birthDay", convertDate(profile.getBirthDay()));
+//        model.addAttribute("birthDay", convertDate(profile.getBirthDay()));
+        model.addAttribute("birthDay", profile.getBirthDay());
         model.addAttribute("tabName", "editGeneral");
         return "jsp/edit/edit-personal-info";
     }
 
+    @PostMapping(value = "/edit/edit-personal-info")
+    public String saveProfileGeneral(@ModelAttribute("profile") @Valid Profile profileForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            final Profile profile = profileForm;
+            model.addAttribute("profile", profile);
+//            model.addAttribute("birthDay", convertDate(profile.getBirthDay()));
+            model.addAttribute("birthDay", profile.getBirthDay());
+            model.addAttribute("tabName", "editGeneral");
+            return "jsp/edit/edit-personal-info";
+        }
+
+        return "redirect:/edit/contacts";
+    }
+
     /**
      * Convert date to String in format YYYY-MM-DD
+     *
      * @param
      * @return date in string format
      */
@@ -77,7 +90,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/contacts")
     public String editProfileContacts(Model model) {
         model.addAttribute("tabName", "contacts");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("contacts", profile.getContacts());
 
         return "jsp/edit/contacts";
@@ -86,15 +99,13 @@ public class EditProfileController {
     @GetMapping(value = "/edit/skills")
     public String getEditSkill(Model model) {
 
-        model.addAttribute("skillForm", editProfileService.findSkills("aly-dutta")); // TODO: remove hardcode
-        model.addAttribute("tabName", "editSkill");
+        model.addAttribute("skillForm", editProfileService.findSkillsByUid("aly-dutta")); // TODO: remove hardcode
         return gotoSkillsJSP(model);
     }
 
     @PostMapping(value = "/edit/skills")
-    public String saveEditSkill( @ModelAttribute("skillForm") @Valid SkillForm form, BindingResult bindingResult, Model model) {
+    public String saveEditSkill(@ModelAttribute("skillForm") @Valid SkillForm form, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("tabName", "editSkill");
             return gotoSkillsJSP(model);
         }
 
@@ -104,8 +115,8 @@ public class EditProfileController {
     @GetMapping(value = "/edit/practical-experience")
     public String editProfilePracticalExperience(Model model) {
         model.addAttribute("tabName", "experience");
-        final Profile profile = editProfileService.findProfileByUid(uid);
-        model.addAttribute("practics", profile.getPractics());
+        final Profile profile = findProfileService.findProfileByUid(uid);
+        model.addAttribute("practics", profile.getPractices());
 
         return "jsp/edit/experiences";
     }
@@ -113,7 +124,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/certificates")
     public String editProfileSertificates(Model model) {
         model.addAttribute("tabName", "certificates");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("certificates", profile.getCertificates());
 
         return "jsp/edit/certificate";
@@ -122,7 +133,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/courses")
     public String editProfileCourses(Model model) {
         model.addAttribute("tabName", "courses");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("courses", profile.getCourses());
 
         return "jsp/edit/courses";
@@ -131,7 +142,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/education")
     public String editProfileEducation(Model model) {
         model.addAttribute("tabName", "education");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("educations", profile.getEducations());
 
         return "jsp/edit/education";
@@ -140,7 +151,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/languages")
     public String editProfileLanguages(Model model) {
         model.addAttribute("tabName", "languages");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("languages", profile.getLanguages());
         model.addAttribute("languageTypes", LanguageType.values());
         model.addAttribute("languageLevels", LanguageLevel.values());
@@ -151,7 +162,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/hobbies")
     public String editProfileHobbies(Model model) {
         model.addAttribute("tabName", "hobbies");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("hobbies", profile.getHobbies());
 
         return "jsp/edit/hobbies";
@@ -160,7 +171,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/additional-info")
     public String editProfileAdditionalInfo(Model model) {
         model.addAttribute("tabName", "additionalInfo");
-        final Profile profile = editProfileService.findProfileByUid(uid);
+        final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("profileInfo", profile.getInfo());
 
         return "jsp/edit/additional";
@@ -168,6 +179,7 @@ public class EditProfileController {
 
     private String gotoSkillsJSP(Model model) {
         model.addAttribute("skillCategories", editProfileService.findSkillCategory());
+        model.addAttribute("tabName", "editSkill");
         return "jsp/edit/skills";
     }
 }
