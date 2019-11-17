@@ -48,7 +48,7 @@
             </div>
 
             <div class="col-7">
-                <input type="date" value="${birthDay}">
+                <input class="form-control" type="date" value="${birthDay}">
             </div>
             <div class="col-3">
             </div>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="col-7">
-                <input type="text" value="${profile.country}">
+                <input class="form-control" type="text" value="${profile.country}">
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-7">
-                <input type="text" value="${profile.city}">
+                <input class="form-control" type="text" value="${profile.city}">
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
             </div>
 
             <div class="col-7">
-                <input type="text" value="${profile.email}">
+                <input class="form-control" type="text" value="${profile.email}">
             </div>
             <div class="col-3">
                 Preferred domain is @gamil.com.<br>
@@ -105,7 +105,7 @@
             </div>
 
             <div class="col-7">
-                <input type="text" value="${profile.phone}">
+                <input class="form-control" type="text" value="${profile.phone}">
             </div>
             <div class="col-3">
                 Should be valid phone number.<br>
@@ -122,7 +122,7 @@
             </div>
 
             <div class="col-7">
-                <input type="text" value="${profile.info}">
+                <input class="form-control" type="text" value="${profile.info}">
             </div>
             <div class="col-3">
                 Looking position.<br>
