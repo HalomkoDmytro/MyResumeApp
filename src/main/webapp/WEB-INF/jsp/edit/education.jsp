@@ -10,30 +10,32 @@
             <edit-profile:edit-nav-tabs/>
         </div>
 
-        <div class="card-body">
-            <div>
-                <h2 class="text-center">Professional courses </h2>
+        <form:form action="/edit/education" method="post" modelAttribute="educationForm">
+            <div class="card-body">
+                <div>
+                    <h2 class="text-center">Professional courses </h2>
+                </div>
+
+                <hr>
+
+                <div id="ui-block-container">
+                    <c:forEach var="education" items="${educationForm.items}" varStatus="status">
+                        <resume:edit-education-block index="${status.index}" education="${education}"/>
+                    </c:forEach>
+                </div>
+
+                <hr>
+
+                <div>
+                    <a href="javascript:void(0);">+Add</a>
+                </div>
+
+                <hr>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                </div>
             </div>
-
-            <hr>
-
-            <div id="ui-block-container">
-                <c:forEach var="education" items="${educations}" varStatus="status">
-                    <resume:edit-education-block education="${education}"/>
-                </c:forEach>
-            </div>
-
-            <hr>
-
-            <div>
-                <a href="javascript:void(0);">+Add</a>
-            </div>
-
-            <hr>
-            <div class="text-center">
-                <input type="submit" class="btn btn-primary" value="Save">
-            </div>
-        </div>
+        </form:form>
 
     </div>
 </div>

@@ -5,6 +5,7 @@ import com.myresume.entity.LanguageLevel;
 import com.myresume.entity.LanguageType;
 import com.myresume.entity.Profile;
 import com.myresume.form.CourseFrom;
+import com.myresume.form.EducationForm;
 import com.myresume.form.GeneralInfoForm;
 import com.myresume.form.PracticForm;
 import com.myresume.form.SkillForm;
@@ -176,9 +177,20 @@ public class EditProfileController {
     public String editProfileEducation(Model model) {
         model.addAttribute("tabName", "education");
         final Profile profile = findProfileService.findProfileByUid(uid);
-        model.addAttribute("educations", profile.getEducations());
+        model.addAttribute("educationForm", new EducationForm(profile.getEducations()));
 
         return "jsp/edit/education";
+    }
+
+    @PostMapping(value = "/edit/education")
+    public String saveProfileEducation(@ModelAttribute("educationForm") @Valid EducationForm educationForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tabName", "education");
+            model.addAttribute("educationForm", educationForm);
+            return "jsp/edit/education";
+        }
+
+        return "redirect:/edit/languages";
     }
 
     @GetMapping(value = "/edit/languages")
