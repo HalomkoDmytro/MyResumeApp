@@ -23,6 +23,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,8 +61,7 @@ public class Profile {
     private String lastName;
 
     @Column
-//    @NotNull
-//    @SafeHtml
+    @NotNull
     @EnglishLanguage
     private String objective;
 
@@ -86,7 +86,6 @@ public class Profile {
 
     @Column
     @EnglishLanguage
-//    @SafeHtml
     private String summary;
 
     @Column(length = 100)

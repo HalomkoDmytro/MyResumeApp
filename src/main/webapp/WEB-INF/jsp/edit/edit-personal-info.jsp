@@ -9,7 +9,6 @@
         </div>
         <div class="card-body">
             <edit-profile:edit-general/>
-
         </div>
     </div>
 </div>
