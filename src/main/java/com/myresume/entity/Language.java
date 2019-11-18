@@ -31,7 +31,7 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 30)
     @EnglishLanguage(withSpechSymbols = false, withNumber = false, withPunctuations = false)
     private String name;
 
@@ -41,7 +41,7 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
 
     @Column(name = "type")
     @Convert(converter = LanguageType.LanguageTypeConverter.class)
-    private LanguageType languageType;
+    private LanguageType languageTypes;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
@@ -50,14 +50,14 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
     private Profile profile;
 
     @Transient
-    private int ordinal;
+    private Integer ordinal;
 
     @Override
     public int compareTo(Language o) {
         return name.compareToIgnoreCase(o.getName());
     }
 
-    public int getOrdinal() {
+    public Integer getOrdinal() {
         return languageLevel.ordinal();
     }
 
@@ -67,8 +67,7 @@ public class Language implements Serializable, Comparable<Language>, ProfileColl
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", languageLevel=" + languageLevel +
-                ", languageType=" + languageType +
-                ", profile=" + profile +
+                ", languageType=" + languageTypes +
                 '}';
     }
 }

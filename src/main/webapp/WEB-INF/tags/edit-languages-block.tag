@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"    uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="resume"    tagdir="/WEB-INF/tags"%>
 
+<%@ attribute name="index"   required="true" type="java.lang.Object"%>
 <%@ attribute name="language" required="false" type="com.myresume.entity.Language"%>
 
 <div id="ui-item-${index}" class="container ui-item skill-item border m-1">
@@ -16,21 +17,25 @@
         <div class="row">
             <div class="col">
                 <b>Language</b><br>
-                <input type="text" value="${language.name}">
+                <input name="items[${index}].name" type="text" value="${language.name}"/>
+                <br>
+                <form:errors path="items[${index}].name" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col">
                 <b>Type</b><br>
-                <select>
+                <select  name="items[${index}].languageTypes">
                     <c:forEach var="languageType" items="${languageTypes}">
-                        <option value="${languageType}" ${languageType== language.languageType ? 'selected' : ' '}>${languageType}</option>
+                        <option value="${languageType}" ${languageType== language.languageTypes ? 'selected' : ' '}>${languageType}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="col">
-                <b>Level(From Beginner to Proficiency)</b><br>
-                <div class="range">
-                    <input class="form-control" type="range" min="0" max="6" steps="1" value="${language.ordinal}">
-                </div>
+                <b>Level</b><br>
+                <select  name="items[${index}].languageLevel">
+                    <c:forEach var="languageLevel" items="${languageLevels}">
+                        <option value="${languageLevel}" ${languageLevel== language.languageLevel ? 'selected' : ' '}>${languageLevel}</option>
+                    </c:forEach>
+                </select>
 
             </div>
         </div>

@@ -10,30 +10,33 @@
             <edit-profile:edit-nav-tabs/>
         </div>
 
-        <div class="card-body">
-            <div>
-                <h2 class="text-center">Professional courses </h2>
+        <form:form action="/edit/languages" method="post" modelAttribute="courseFrom">
+
+            <div class="card-body">
+                <div>
+                    <h2 class="text-center">Professional courses </h2>
+                </div>
+
+                <hr>
+
+                <div id="ui-block-container">
+                    <c:forEach var="language" items="${languageForm.items}" varStatus="status">
+                        <resume:edit-languages-block index="${status.index}" language="${language}"/>
+                    </c:forEach>
+                </div>
+
+                <hr>
+
+                <div>
+                    <a href="javascript:void(0);">+Add</a>
+                </div>
+
+                <hr>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                </div>
             </div>
-
-            <hr>
-
-            <div id="ui-block-container">
-                <c:forEach var="language" items="${languages}" varStatus="status">
-                    <resume:edit-languages-block language="${language}"/>
-                </c:forEach>
-            </div>
-
-            <hr>
-
-            <div>
-                <a href="javascript:void(0);">+Add</a>
-            </div>
-
-            <hr>
-            <div class="text-center">
-                <input type="submit" class="btn btn-primary" value="Save">
-            </div>
-        </div>
+        </form:form>
 
     </div>
 </div>

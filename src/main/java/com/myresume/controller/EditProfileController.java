@@ -7,6 +7,7 @@ import com.myresume.entity.Profile;
 import com.myresume.form.CourseFrom;
 import com.myresume.form.EducationForm;
 import com.myresume.form.GeneralInfoForm;
+import com.myresume.form.LanguageForm;
 import com.myresume.form.PracticForm;
 import com.myresume.form.SkillForm;
 import com.myresume.service.EditProfileService;
@@ -59,33 +60,6 @@ public class EditProfileController {
 
         return "redirect:/edit/contacts";
     }
-
-//    /**
-//     * Convert date to String in format YYYY-MM-DD
-//     *
-//     * @param
-//     * @return date in string format
-//     */
-//    private String convertDate(Date date) {
-//        final LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//        final int day = localDate.getDayOfMonth();
-//        final int month = localDate.getMonthValue();
-//        final int year = localDate.getYear();
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(year)
-//                .append("-");
-//        if (month < 10) {
-//            sb.append("0");
-//        }
-//        sb.append(month)
-//                .append("-");
-//        if (day < 10) {
-//            sb.append("0");
-//        }
-//        sb.append(day)
-//                .toString();
-//        return sb.toString();
-//    }
 
     @GetMapping(value = "/edit/contacts")
     public String editProfileContacts(Model model) {
@@ -197,11 +171,24 @@ public class EditProfileController {
     public String editProfileLanguages(Model model) {
         model.addAttribute("tabName", "languages");
         final Profile profile = findProfileService.findProfileByUid(uid);
-        model.addAttribute("languages", profile.getLanguages());
+        model.addAttribute("languageForm", new LanguageForm(profile.getLanguages()));
         model.addAttribute("languageTypes", LanguageType.values());
         model.addAttribute("languageLevels", LanguageLevel.values());
 
         return "jsp/edit/languages";
+    }
+
+    @PostMapping(value = "/edit/languages")
+    public String saveProfileLanguages(@ModelAttribute("languageForm") @Valid LanguageForm languageForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("languageTypes", LanguageType.values());
+            model.addAttribute("languageLevels", LanguageLevel.values());
+            model.addAttribute("tabName", "languages");
+            model.addAttribute("educationForm", languageForm);
+            return "jsp/edit/languages";
+        }
+
+        return "redirect:/edit/hobbies";
     }
 
     @GetMapping(value = "/edit/hobbies")
