@@ -1,8 +1,11 @@
 package com.myresume.controller;
 
+import com.myresume.entity.Contacts;
 import com.myresume.entity.LanguageLevel;
 import com.myresume.entity.LanguageType;
 import com.myresume.entity.Profile;
+import com.myresume.form.GeneralInfoForm;
+import com.myresume.form.PracticForm;
 import com.myresume.form.SkillForm;
 import com.myresume.service.EditProfileService;
 import com.myresume.service.FindProfileService;
@@ -18,9 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 @Controller
 public class EditProfileController {
@@ -40,19 +40,17 @@ public class EditProfileController {
     public String editProfileGeneral(Model model) throws ParseException {
         final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("profile", profile);
-//        model.addAttribute("birthDay", convertDate(profile.getBirthDay()));
         model.addAttribute("birthDay", profile.getBirthDay());
         model.addAttribute("tabName", "editGeneral");
         return "jsp/edit/edit-personal-info";
     }
 
     @PostMapping(value = "/edit/edit-personal-info")
-    public String saveProfileGeneral(@ModelAttribute("profile") @Valid Profile profileForm, BindingResult bindingResult, Model model) {
+    public String saveProfileGeneralInfo(@ModelAttribute("profile") @Valid GeneralInfoForm profileForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            final Profile profile = profileForm;
-            model.addAttribute("profile", profile);
-//            model.addAttribute("birthDay", convertDate(profile.getBirthDay()));
-            model.addAttribute("birthDay", profile.getBirthDay());
+            final GeneralInfoForm generalInfo = profileForm;
+            model.addAttribute("profile", generalInfo);
+            model.addAttribute("birthDay", generalInfo.getBirthDay());
             model.addAttribute("tabName", "editGeneral");
             return "jsp/edit/edit-personal-info";
         }
@@ -60,32 +58,32 @@ public class EditProfileController {
         return "redirect:/edit/contacts";
     }
 
-    /**
-     * Convert date to String in format YYYY-MM-DD
-     *
-     * @param
-     * @return date in string format
-     */
-    private String convertDate(Date date) {
-        final LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        final int day = localDate.getDayOfMonth();
-        final int month = localDate.getMonthValue();
-        final int year = localDate.getYear();
-        StringBuilder sb = new StringBuilder();
-        sb.append(year)
-                .append("-");
-        if (month < 10) {
-            sb.append("0");
-        }
-        sb.append(month)
-                .append("-");
-        if (day < 10) {
-            sb.append("0");
-        }
-        sb.append(day)
-                .toString();
-        return sb.toString();
-    }
+//    /**
+//     * Convert date to String in format YYYY-MM-DD
+//     *
+//     * @param
+//     * @return date in string format
+//     */
+//    private String convertDate(Date date) {
+//        final LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        final int day = localDate.getDayOfMonth();
+//        final int month = localDate.getMonthValue();
+//        final int year = localDate.getYear();
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(year)
+//                .append("-");
+//        if (month < 10) {
+//            sb.append("0");
+//        }
+//        sb.append(month)
+//                .append("-");
+//        if (day < 10) {
+//            sb.append("0");
+//        }
+//        sb.append(day)
+//                .toString();
+//        return sb.toString();
+//    }
 
     @GetMapping(value = "/edit/contacts")
     public String editProfileContacts(Model model) {
@@ -94,6 +92,18 @@ public class EditProfileController {
         model.addAttribute("contacts", profile.getContacts());
 
         return "jsp/edit/contacts";
+    }
+
+    @PostMapping(value = "/edit/contacts")
+    public String saveContact(@ModelAttribute("contacts") @Valid Contacts contacts, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tabName", "contacts");
+            model.addAttribute("contacts", contacts);
+
+            return "jsp/edit/contacts";
+        }
+
+        return "redirect:/edit/skills";
     }
 
     @GetMapping(value = "/edit/skills")
@@ -109,16 +119,27 @@ public class EditProfileController {
             return gotoSkillsJSP(model);
         }
 
-        return "redirect:/profile/mike-ross"; //todo
+        return "redirect:/edit/practical-experience"; //todo
     }
 
     @GetMapping(value = "/edit/practical-experience")
     public String editProfilePracticalExperience(Model model) {
         model.addAttribute("tabName", "experience");
         final Profile profile = findProfileService.findProfileByUid(uid);
-        model.addAttribute("practics", profile.getPractices());
+        model.addAttribute("practicForm", new PracticForm(profile.getPractices()));
 
         return "jsp/edit/experiences";
+    }
+
+    @PostMapping(value = "/edit/practical-experience")
+    public String savePracticalExperience(@ModelAttribute("practicForm") @Valid PracticForm practicForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tabName", "experience");
+            model.addAttribute("practicForm", practicForm);
+            return "jsp/edit/experiences";
+        }
+
+        return "redirect:/edit/certificates"; //todo
     }
 
     @GetMapping(value = "/edit/certificates")

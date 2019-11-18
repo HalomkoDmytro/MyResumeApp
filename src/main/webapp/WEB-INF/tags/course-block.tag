@@ -28,7 +28,7 @@
 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="">Month adn Year</span>
+                        <span class="input-group-text" id="">Month and Year</span>
                     </div>
                     <input type="text" class="form-control" value="${course.finishDate != null ? course.finishDateMonth : 'not finished'}">
                     <input type="text" class="form-control" value="${course.finishDate != null ? course.finishDateYear : 'not finished'}">
