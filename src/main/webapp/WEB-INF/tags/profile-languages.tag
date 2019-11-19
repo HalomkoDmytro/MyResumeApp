@@ -8,7 +8,7 @@
         <c:forEach var="profileLanguage" items="${profile.languages}">
             <p><b>${profileLanguage.name} :</b>&nbsp;
                 ${profileLanguage.languageLevel.name().toLowerCase()}&nbsp;
-                (<i>${profileLanguage.languageType.name().toLowerCase()}</i>)</p>
+                (<i>${profileLanguage.languageTypes.name().toLowerCase()}</i>)</p>
         </c:forEach>
     </div>
 </div>

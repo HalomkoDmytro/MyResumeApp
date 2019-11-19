@@ -8,9 +8,14 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @PropertySource("classpath:logic.properties")
+@EnableSpringDataWebSupport
 public class AppConfig extends SpringBootServletInitializer {
 
     @Value("${application.production}")
@@ -33,4 +38,14 @@ public class AppConfig extends SpringBootServletInitializer {
         errorFilter.setOrder(1);
         return errorFilter;
     }
+
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
+
 }

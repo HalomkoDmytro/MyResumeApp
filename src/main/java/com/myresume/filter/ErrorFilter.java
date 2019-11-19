@@ -36,15 +36,21 @@ public class ErrorFilter implements Filter {
 
     private void handleException(HttpServletRequest request, HttpServletResponse response, Throwable e) throws ServletException, IOException {
         if (isProduction) {
-            if ("/resumeError".equals(request.getRequestURL())) {
-                throw new ServletException(e);
+            final boolean ifFragmentRequest = request.getRequestURL().toString().startsWith("/fragment");
+            if ("/resumeError".equals(request.getRequestURL()) || ifFragmentRequest) {
+                sendErrorStatus(response);
             } else {
                 response.sendRedirect("/resumeError?url=" + request.getRequestURL());
             }
         } else {
-            LOGGER.info("not Production had error");
             throw new ServletException(e);
         }
+    }
+
+    private void sendErrorStatus(HttpServletResponse response) throws IOException {
+        response.reset();
+        response.getWriter().write("");
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
     @Override
