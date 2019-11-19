@@ -16,6 +16,16 @@ import java.util.Date;
 @Setter
 public class GeneralInfoForm {
 
+    @EnglishLanguage(withSpechSymbols = false)
+    @NotEmpty
+    @Size(max = 60)
+    private String country;
+
+    @EnglishLanguage(withSpechSymbols = false)
+    @NotEmpty
+    @Size(max = 100)
+    private String city;
+
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Adulthood
     private Date birthDay;

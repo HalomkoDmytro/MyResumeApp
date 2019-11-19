@@ -1,7 +1,6 @@
 package com.myresume.controller;
 
 import com.myresume.entity.Contacts;
-import com.myresume.entity.Hobby;
 import com.myresume.entity.LanguageLevel;
 import com.myresume.entity.LanguageType;
 import com.myresume.entity.Profile;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.util.List;
 
 @Controller
 public class EditProfileController {
