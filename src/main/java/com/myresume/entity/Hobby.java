@@ -1,6 +1,7 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.myresume.annotation.constraints.EnglishLanguage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,11 +30,12 @@ public class Hobby implements Serializable, Comparable<Hobby>, ProfileCollection
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 30)
+    @EnglishLanguage
     private String name;
-
-    @Transient
-    private boolean selected;
+//
+//    @Transient
+//    private boolean selected;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})

@@ -1,12 +1,14 @@
 package com.myresume.controller;
 
 import com.myresume.entity.Contacts;
+import com.myresume.entity.Hobby;
 import com.myresume.entity.LanguageLevel;
 import com.myresume.entity.LanguageType;
 import com.myresume.entity.Profile;
 import com.myresume.form.CourseFrom;
 import com.myresume.form.EducationForm;
 import com.myresume.form.GeneralInfoForm;
+import com.myresume.form.HobbyForm;
 import com.myresume.form.InfoForm;
 import com.myresume.form.LanguageForm;
 import com.myresume.form.PracticForm;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.List;
 
 @Controller
 public class EditProfileController {
@@ -86,7 +89,7 @@ public class EditProfileController {
     @GetMapping(value = "/edit/skills")
     public String getEditSkill(Model model) {
 
-        model.addAttribute("skillForm", editProfileService.findSkillsByUid("aly-dutta")); // TODO: remove hardcode
+        model.addAttribute("skillForm", editProfileService.findSkillsByUid(uid)); // TODO: remove hardcode
         return gotoSkillsJSP(model);
     }
 
@@ -196,10 +199,21 @@ public class EditProfileController {
     public String editProfileHobbies(Model model) {
         model.addAttribute("tabName", "hobbies");
         final Profile profile = findProfileService.findProfileByUid(uid);
-        model.addAttribute("hobbies", profile.getHobbies());
+        model.addAttribute("hobbyForm", new HobbyForm(profile.getHobbies()));
         // TODO replace with findHobbiesWithProfileSelected
 
         return "jsp/edit/hobbies";
+    }
+
+    @PostMapping(value = "/edit/hobbies")
+    public String saveProfileHobbies(@ModelAttribute("hobbyForm") @Valid HobbyForm hobbyForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tabName", "hobbies");
+            model.addAttribute("hobbies", hobbyForm);
+            return "jsp/edit/hobbies";
+        }
+
+        return "redirect:/edit/info";
     }
 
     @GetMapping(value = "/edit/info")
