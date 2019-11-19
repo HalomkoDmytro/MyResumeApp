@@ -7,6 +7,7 @@ import com.myresume.entity.Profile;
 import com.myresume.form.CourseFrom;
 import com.myresume.form.EducationForm;
 import com.myresume.form.GeneralInfoForm;
+import com.myresume.form.InfoForm;
 import com.myresume.form.LanguageForm;
 import com.myresume.form.PracticForm;
 import com.myresume.form.SkillForm;
@@ -196,17 +197,29 @@ public class EditProfileController {
         model.addAttribute("tabName", "hobbies");
         final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("hobbies", profile.getHobbies());
+        // TODO replace with findHobbiesWithProfileSelected
 
         return "jsp/edit/hobbies";
     }
 
-    @GetMapping(value = "/edit/additional-info")
+    @GetMapping(value = "/edit/info")
     public String editProfileAdditionalInfo(Model model) {
         model.addAttribute("tabName", "additionalInfo");
         final Profile profile = findProfileService.findProfileByUid(uid);
-        model.addAttribute("profileInfo", profile.getInfo());
+        model.addAttribute("infoForm", new InfoForm(profile.getInfo()));
 
-        return "jsp/edit/additional";
+        return "jsp/edit/info";
+    }
+
+    @PostMapping(value = "/edit/info")
+    public String saveProfileInfo(@ModelAttribute("infoForm") @Valid InfoForm infoForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tabName", "additionalInfo");
+            model.addAttribute("infoForm", infoForm);
+            return "jsp/edit/info";
+        }
+
+        return "redirect:/edit/info";
     }
 
     private String gotoSkillsJSP(Model model) {

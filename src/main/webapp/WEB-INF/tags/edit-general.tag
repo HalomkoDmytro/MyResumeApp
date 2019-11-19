@@ -133,13 +133,13 @@
     <div>
         <div class="row">
             <div class="col-2">
-                <p class="text-right"><b>Info</b></p>
+                <p class="text-right"><b>Objective</b></p>
             </div>
 
             <div class="col-7">
-                <form:input path="info" class="form-control" type="text" />
+                <form:input path="objective" class="form-control" type="text" />
                 <br>
-                <form:errors path="info" cssClass="alert alert-danger" element="div"/>
+                <form:errors path="objective" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="col-3">
                 Looking position.<br>
@@ -151,7 +151,7 @@
     <div>
         <div class="row">
             <div class="col-2">
-                <p class="text-right"><b>Experience</b></p>
+                <p class="text-right"><b>Qualification</b></p>
             </div>
             <div class="col-7">
                 <form:textarea path="summary" rows="10" class="form-control"/>

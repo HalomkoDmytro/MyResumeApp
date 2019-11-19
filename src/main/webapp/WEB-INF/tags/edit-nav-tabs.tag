@@ -29,6 +29,6 @@
         <a class="nav-link ${tabName == 'hobbies' ? 'active' : ''}" href="/edit/hobbies">Hobbies</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link ${tabName == 'additionalInfo' ? 'active' : ''}" href="/edit/additional-info">Additional</a>
+        <a class="nav-link ${tabName == 'additionalInfo' ? 'active' : ''}" href="/edit/info">Additional</a>
     </li>
 </ul>
