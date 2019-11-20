@@ -1,4 +1,4 @@
-package com.myresume.dao;
+package com.myresume.repository.dao;
 
 import com.myresume.entity.SkillCategory;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,7 @@
 package com.myresume.controller;
 
-import com.myresume.dao.ProfileRepository;
-import com.myresume.dao.SkillCategoryRepository;
+import com.myresume.repository.dao.ProfileRepository;
+import com.myresume.repository.dao.SkillCategoryRepository;
 import com.myresume.entity.Profile;
 import com.myresume.service.FindProfileService;
 import com.myresume.service.NameService;

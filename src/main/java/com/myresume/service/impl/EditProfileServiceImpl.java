@@ -1,7 +1,5 @@
 package com.myresume.service.impl;
 
-import com.myresume.dao.ProfileRepository;
-import com.myresume.dao.SkillCategoryRepository;
 import com.myresume.entity.Hobby;
 import com.myresume.entity.Language;
 import com.myresume.entity.Practic;
@@ -11,6 +9,8 @@ import com.myresume.entity.SkillCategory;
 import com.myresume.exceptions.CantCompleteClientRequestException;
 import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
+import com.myresume.repository.dao.ProfileRepository;
+import com.myresume.repository.dao.SkillCategoryRepository;
 import com.myresume.service.EditProfileService;
 import com.myresume.utils.DataUtil;
 import org.apache.commons.collections4.CollectionUtils;

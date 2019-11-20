@@ -1,8 +1,7 @@
 package com.myresume.service.impl;
 
-import com.myresume.dao.ProfileRepository;
+import com.myresume.repository.dao.ProfileRepository;
 import com.myresume.entity.Profile;
-import com.myresume.filter.CustomSiteMashFilter;
 import com.myresume.service.FindProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.myresume.service.impl;
 
-import com.myresume.dao.ProfileRepository;
+import com.myresume.repository.dao.ProfileRepository;
 import com.myresume.entity.Profile;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
