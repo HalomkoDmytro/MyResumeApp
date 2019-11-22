@@ -23,7 +23,7 @@ import java.net.UnknownHostException;
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.myresume.repository.search")
-@ComponentScan(basePackages = {"com.myresume"})
+//@ComponentScan(basePackages = {"com.myresume"})
 @PropertySource("classpath:elasticsearch.properties")
 public class ElasticSearchConfig {
 
@@ -45,13 +45,13 @@ public class ElasticSearchConfig {
     public Client client() throws UnknownHostException {
         Settings elasticsearchSettings =
                 Settings.builder()
-                        .put("client.transport.sniff", true)
+                        .put("client.transport.sniff", false)
                         .put("path.home", elasticsearchHome)
                         .put("cluster.name", clusterName)
                         .build();
 
         TransportClient client = new PreBuiltTransportClient(elasticsearchSettings);
-        client.addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
+        client.addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
 //        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
 
         return client;

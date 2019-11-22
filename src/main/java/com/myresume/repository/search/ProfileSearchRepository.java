@@ -6,12 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
-//@Repository
-public interface ProfileSearchRepository extends ElasticsearchRepository<Profile, String> {
+import javax.transaction.Transactional;
+
+@Repository
+public interface ProfileSearchRepository extends ElasticsearchRepository<Profile, Long> {
 
 //    Page<Profile> findByObjectiveLikeOrSummaryLikeOrInfoLikeOrCertificatesNameLikeOrLanguagesNameLikeOrPracticesCompanyLikeOrPracticesPositionLikeOrPracticesResponsibilitiesLikeOrSkillsValueLike(
 //            String objective, String info, String summary, String certificateName, String languageName, String practicesCompany,
 //            String practicesPosition, String practicesResponsibility, String skillValue, Pageable pageable);
 //
-//    Page<Profile> findByFirstName(String firstName, Pageable pageable);
+    Page<Profile> findByFirstName(String firstName, Pageable pageable);
 }

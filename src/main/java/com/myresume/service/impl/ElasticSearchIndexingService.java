@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 @Service
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ElasticSearchIndexingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ElasticSearchIndexingService.class);
@@ -32,8 +33,8 @@ public class ElasticSearchIndexingService {
     private FindProfileService findProfileService;
 
     @PostConstruct
-    private void postConstruct() {
-        if (indexingAllDuringStartup) {
+    public void postConstruct() {
+        if (false) {
             LOGGER.info("Indexing all during startup is ENABLED");
             LOGGER.info("Clear old index");
             if (elasticsearchOperations.indexExists(Profile.class)) {
@@ -41,6 +42,7 @@ public class ElasticSearchIndexingService {
             }
             LOGGER.info("Start indexing profile");
             for (Profile p : findProfileService.findAllForIndexing()) {
+                p.getHobbies().size();
                 profileSearchRepo.save(p);
                 LOGGER.info("Successful indexing of profile: " + p.getUid());
             }

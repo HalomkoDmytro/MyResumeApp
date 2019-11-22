@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
 //import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientAutoConfiguration;
 //import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientAutoConfiguration;
+//import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientAutoConfiguration;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -24,9 +25,10 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @PropertySource({"classpath:logic.properties"})
 @EnableSpringDataWebSupport
-@EnableAutoConfiguration(exclude={ElasticsearchAutoConfiguration.class
+@EnableAutoConfiguration
+// (exclude={ElasticsearchAutoConfiguration.class
 //        , RestClientAutoConfiguration.class
-})
+//})
 @EnableJpaRepositories("com.myresume.repository")
 public class AppConfig extends SpringBootServletInitializer {
 

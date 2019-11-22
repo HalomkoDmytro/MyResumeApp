@@ -145,7 +145,7 @@ public class EditProfileServiceImpl implements EditProfileService {
     }
 
     private void updateIndexProfileSkills(long idProfile, List<Skill> updatedData) {
-        Profile profile = profileSearchRepository.findById(String.valueOf(idProfile)).get();
+        Profile profile = profileSearchRepository.findById(idProfile).get();
         profile.setSkills(updatedData);
         profileSearchRepository.save(profile);
         LOGGER.info("Profile skills index updated");
