@@ -1,6 +1,7 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myresume.annotation.constraints.EnglishLanguage;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,6 +43,7 @@ public class Course extends AbstractFinishDateEntity<Course> implements Serializ
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profile")
     @JsonBackReference
+    @JsonIgnore
     private Profile profile;
 
     @Override

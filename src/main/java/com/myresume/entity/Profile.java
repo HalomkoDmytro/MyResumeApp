@@ -2,12 +2,16 @@ package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.myresume.annotation.constraints.Adulthood;
 import com.myresume.annotation.constraints.EnglishLanguage;
 import com.myresume.annotation.constraints.Phone;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+//import org.hibernate.validator.constraints.Email;
+//import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
@@ -21,9 +25,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.Email;
+//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +39,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
+@Document(indexName = "profilei", type = "profile")
 public class Profile {
 
     @Id
@@ -66,6 +72,7 @@ public class Profile {
     private String objective;
 
     @Column(length = 256)
+    @JsonIgnore
     private String largePhoto;
 
     @Column(length = 256)
@@ -76,9 +83,9 @@ public class Profile {
     private String phone;
 
     @Column(length = 100)
-    @NotEmpty
+//    @NotEmpty
     @EnglishLanguage
-    @Email
+//    @Email
     private String email;
 
     @Column
@@ -92,12 +99,15 @@ public class Profile {
     private String uid;
 
     @Column(length = 256)
+    @JsonIgnore
     private String password;
 
     @Column
+    @JsonIgnore
     private boolean completed;
 
     @Column
+    @JsonIgnore
     private Date created;
 
     @OneToMany(targetEntity = Certificate.class, mappedBy = "profile", fetch = FetchType.LAZY,
@@ -107,12 +117,14 @@ public class Profile {
     @OneToMany(targetEntity = Education.class, mappedBy = "profile", fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OrderBy("finishYear DESC, beginYear DESC, id DESC")
+    @JsonIgnore
     private List<Education> educations;
 
     @OneToMany(targetEntity = Hobby.class, mappedBy = "profile", fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OrderBy("name ASC")
     @JsonManagedReference
+    @JsonIgnore
     private List<Hobby> hobbies;
 
     @OneToMany(targetEntity = Language.class, mappedBy = "profile", fetch = FetchType.LAZY,

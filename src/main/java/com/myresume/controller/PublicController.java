@@ -56,7 +56,8 @@ public class PublicController {
 
     @RequestMapping("/welcome")
     public String welcome(Model model) {
-        Page<Profile> page = findProfileService.findAll(new PageRequest(0, Constants.MAX_PROFILE_PER_PAGE, new Sort("id")));
+//        Page<Profile> page = findProfileService.findAll(new PageRequest(0, Constants.MAX_PROFILE_PER_PAGE, new Sort("id")));
+        Page<Profile> page = findProfileService.findAll( PageRequest.of(0, Constants.MAX_PROFILE_PER_PAGE));
         final List<Profile> profiles = page.getContent();
         model.addAttribute("page", page);
         model.addAttribute("profiles", profiles);

@@ -11,4 +11,6 @@ public interface FindProfileService {
     Page<Profile> findAll(Pageable pageable);
 
     Profile findProfileByUid(String uid);
+
+    Iterable<Profile> findAllForIndexing();
 }

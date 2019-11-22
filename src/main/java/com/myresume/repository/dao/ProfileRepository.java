@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface ProfileRepository extends PagingAndSortingRepository<Profile, Long> {
 
+    Page<Profile> findByFirstName(String firstName, Pageable pageable);
+
     Profile findByUid(String uid);
 
     Profile findByEmail(String email);

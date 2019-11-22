@@ -11,6 +11,7 @@ import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
 import com.myresume.repository.dao.ProfileRepository;
 import com.myresume.repository.dao.SkillCategoryRepository;
+import com.myresume.repository.search.ProfileSearchRepository;
 import com.myresume.service.EditProfileService;
 import com.myresume.utils.DataUtil;
 import org.apache.commons.collections4.CollectionUtils;
@@ -20,8 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -43,6 +47,9 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Autowired
     private SkillCategoryRepository skillCategoryRepository;
+
+    @Autowired
+    private ProfileSearchRepository profileSearchRepository;
 
     @Value("${profile.max.hobbies}")
     private int maxProfileHobbies;
@@ -67,7 +74,24 @@ public class EditProfileServiceImpl implements EditProfileService {
         profile.setPassword(signUpForm.getPassword());
         profile.setCompleted(false);
         profileRepository.save(profile);
+        registerCreateIndexProfileIfTransactionSuccess(profile);
         return profile;
+    }
+
+    private void registerCreateIndexProfileIfTransactionSuccess(final Profile profile) {
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                LOGGER.info("New profile created:{}", profile.getUid());
+                profile.setCertificates(Collections.EMPTY_LIST);
+                profile.setLanguages(Collections.EMPTY_LIST);
+                profile.setPractices(Collections.EMPTY_LIST);
+                profile.setSkills(Collections.EMPTY_LIST);
+                profile.setCourses(Collections.EMPTY_LIST);
+                profileSearchRepository.save(profile);
+                LOGGER.info("New profile index created: {}", profile.getUid());
+            }
+        });
     }
 
     private String generateProfileUid(SignUpForm signUpForm) {
@@ -91,7 +115,8 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Override
     public List<SkillCategory> listCategories() {
-        return skillCategoryRepository.findAll(new Sort("id"));
+//        return skillCategoryRepository.findAll(new Sort("id"));
+        return skillCategoryRepository.findAll();
     }
 
     @Override
@@ -105,7 +130,25 @@ public class EditProfileServiceImpl implements EditProfileService {
         } else {
             profile.setSkills(updatedSkills);
             profileRepository.save(profile);
+            registerCreateIndexProfileSkillIfTransactionSuccess(idProfile, updatedSkills);
         }
+    }
+
+    private void registerCreateIndexProfileSkillIfTransactionSuccess(final long idProfile, final List<Skill> data) {
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                LOGGER.info("Profile skills updated");
+                updateIndexProfileSkills(idProfile, data);
+            }
+        });
+    }
+
+    private void updateIndexProfileSkills(long idProfile, List<Skill> updatedData) {
+        Profile profile = profileSearchRepository.findById(String.valueOf(idProfile)).get();
+        profile.setSkills(updatedData);
+        profileSearchRepository.save(profile);
+        LOGGER.info("Profile skills index updated");
     }
 
     @Override

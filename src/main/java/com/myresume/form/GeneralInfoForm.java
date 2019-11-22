@@ -5,10 +5,11 @@ import com.myresume.annotation.constraints.EnglishLanguage;
 import com.myresume.annotation.constraints.Phone;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+
 import javax.validation.constraints.Size;
 import java.util.Date;
 

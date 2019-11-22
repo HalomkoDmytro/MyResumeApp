@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class FindProfileServiceImpl implements FindProfileService {
 
@@ -26,5 +28,19 @@ public class FindProfileServiceImpl implements FindProfileService {
     @Override
     public Profile findProfileByUid(String uid) {
         return profileRepository.findByUid(uid);
+    }
+
+    @Override
+    @Transactional
+    public Iterable<Profile> findAllForIndexing() {
+        final Iterable<Profile> all = profileRepository.findAll();
+        for(Profile p : all) {
+            p.getSkills().size();
+            p.getCertificates().size();
+            p.getLanguages().size();
+            p.getPractices().size();
+            p.getCourses().size();
+        }
+        return all;
     }
 }
