@@ -11,9 +11,9 @@ import javax.transaction.Transactional;
 @Repository
 public interface ProfileSearchRepository extends ElasticsearchRepository<Profile, Long> {
 
-//    Page<Profile> findByObjectiveLikeOrSummaryLikeOrInfoLikeOrCertificatesNameLikeOrLanguagesNameLikeOrPracticesCompanyLikeOrPracticesPositionLikeOrPracticesResponsibilitiesLikeOrSkillsValueLike(
-//            String objective, String info, String summary, String certificateName, String languageName, String practicesCompany,
-//            String practicesPosition, String practicesResponsibility, String skillValue, Pageable pageable);
+    Page<Profile> findByFirstNameLikeOrLastNameLikeOrObjectiveLikeOrSummaryLikeOrInfoLikeOrCertificatesNameLikeOrLanguagesNameLikeOrPracticesCompanyLikeOrPracticesPositionLikeOrPracticesResponsibilitiesLikeOrSkillsValueLike(
+            String firstName, String LastName, String objective, String info, String summary, String certificateName, String languageName, String practicesCompany,
+            String practicesPosition, String practicesResponsibility, String skillValue, Pageable pageable);
 //
     Page<Profile> findByFirstName(String firstName, Pageable pageable);
 }

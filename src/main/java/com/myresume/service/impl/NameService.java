@@ -1,4 +1,4 @@
-package com.myresume.service;
+package com.myresume.service.impl;
 
 import org.apache.commons.text.WordUtils;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.myresume.service;
+package com.myresume.service.impl;
 
 import com.myresume.repository.dao.ProfileRepository;
 import com.myresume.entity.Profile;

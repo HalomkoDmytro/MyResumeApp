@@ -1,6 +1,7 @@
 package com.myresume.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.myresume.annotation.constraints.Adulthood;
@@ -124,7 +125,7 @@ public class Profile {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OrderBy("name ASC")
     @JsonManagedReference
-    @JsonIgnore
+    @JsonIgnoreProperties("profile")
     private List<Hobby> hobbies;
 
     @OneToMany(targetEntity = Language.class, mappedBy = "profile", fetch = FetchType.LAZY,
@@ -148,6 +149,7 @@ public class Profile {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OrderBy("finishDate DESC")
     @JsonManagedReference
+    @JsonIgnoreProperties("profile")
     private List<Course> courses;
 
     @JsonIgnore

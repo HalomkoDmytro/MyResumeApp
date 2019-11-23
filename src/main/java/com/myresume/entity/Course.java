@@ -43,7 +43,7 @@ public class Course extends AbstractFinishDateEntity<Course> implements Serializ
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profile")
     @JsonBackReference
-    @JsonIgnore
+//    @JsonIgnore
     private Profile profile;
 
     @Override

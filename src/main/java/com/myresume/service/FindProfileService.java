@@ -13,4 +13,6 @@ public interface FindProfileService {
     Profile findProfileByUid(String uid);
 
     Iterable<Profile> findAllForIndexing();
+
+    Page<Profile> findBySearchQuery(String query, Pageable pageable);
 }

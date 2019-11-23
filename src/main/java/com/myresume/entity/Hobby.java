@@ -42,8 +42,7 @@ public class Hobby implements Serializable, Comparable<Hobby>, ProfileCollection
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_profile")
     @JsonBackReference
-    @JsonIgnore
-
+//    @JsonIgnore
     private Profile profile;
 
     @Override
