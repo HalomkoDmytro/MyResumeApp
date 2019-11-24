@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -35,7 +37,7 @@ public class Practic extends AbstractFinishDateEntity<Practic> implements Serial
     @Id
     @SequenceGenerator(name = "PRACTIC_ID_GENERATOR", sequenceName = "PRACTIC_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRACTIC_ID_GENERATOR")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private Long id;
 
     @Column
@@ -71,7 +73,7 @@ public class Practic extends AbstractFinishDateEntity<Practic> implements Serial
     private String src;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
+            CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profile")
     @JsonBackReference
     private Profile profile;
@@ -131,5 +133,24 @@ public class Practic extends AbstractFinishDateEntity<Practic> implements Serial
                 ", src='" + src + '\'' +
 //                ", id_profile " + profile.getId() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Practic practic = (Practic) o;
+        return Objects.equals(position, practic.position) &&
+                Objects.equals(company, practic.company) &&
+                Objects.equals(beginDate, practic.beginDate) &&
+                Objects.equals(responsibilities, practic.responsibilities) &&
+                Objects.equals(demo, practic.demo) &&
+                Objects.equals(src, practic.src) &&
+                Objects.equals(profile, practic.profile);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, company, beginDate, responsibilities, demo, src, profile);
     }
 }

@@ -1,5 +1,6 @@
 package com.myresume.service.impl;
 
+import com.myresume.entity.Contacts;
 import com.myresume.entity.Hobby;
 import com.myresume.entity.Language;
 import com.myresume.entity.Practic;
@@ -9,8 +10,10 @@ import com.myresume.entity.SkillCategory;
 import com.myresume.exceptions.CantCompleteClientRequestException;
 import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
+import com.myresume.repository.dao.PracticesExperienceRepository;
 import com.myresume.repository.dao.ProfileRepository;
 import com.myresume.repository.dao.SkillCategoryRepository;
+import com.myresume.repository.dao.SkillRepository;
 import com.myresume.repository.search.ProfileSearchRepository;
 import com.myresume.service.EditProfileService;
 import com.myresume.utils.DataUtil;
@@ -19,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
@@ -46,6 +48,12 @@ public class EditProfileServiceImpl implements EditProfileService {
     private ProfileRepository profileRepository;
 
     @Autowired
+    private SkillRepository skillRepository;
+
+    @Autowired
+    private PracticesExperienceRepository practicesExperienceRepository;
+
+    @Autowired
     private SkillCategoryRepository skillCategoryRepository;
 
     @Autowired
@@ -56,7 +64,7 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Override
     public SkillForm findSkillsByUid(String uid) {
-        final List<Skill> skills = profileRepository.findByUid("aly-dutta").getSkills();
+        final List<Skill> skills = profileRepository.findByUid(uid).getSkills();
         return new SkillForm(skills);
     }
 
@@ -121,16 +129,48 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Override
     @Transactional
+    public void updateContacts(long idProfile, Contacts updatedContacts) {
+        Profile profile = profileRepository.findById(idProfile).get();
+
+        final Contacts oldContact = profile.getContacts();
+        if (oldContact.equals(updatedContacts)) {
+            LOGGER.debug("Contacts don't contained any updates.");
+            return;
+        } else {
+            profile.setContacts(updatedContacts);
+            profileRepository.save(profile);
+        }
+    }
+
+    @Override
+    @Transactional
     public void updateSkills(long idProfile, List<Skill> updatedSkills) {
         Profile profile = profileRepository.findById(idProfile).get();
 
-        if (CollectionUtils.isEqualCollection(profile.getSkills(), updatedSkills)) {
+        final List<Skill> oldSkills = profile.getSkills();
+        if (CollectionUtils.isEqualCollection(oldSkills, updatedSkills)) {
             LOGGER.debug("List<Skills> don't contained any updates.");
             return;
         } else {
+            skillRepository.deleteAll(oldSkills);
             profile.setSkills(updatedSkills);
             profileRepository.save(profile);
-            registerCreateIndexProfileSkillIfTransactionSuccess(idProfile, updatedSkills);
+//            registerCreateIndexProfileSkillIfTransactionSuccess(idProfile, updatedSkills);
+        }
+    }
+
+    @Override
+    public void updateCertificate(long idProfile, List<Practic> practicesExperienceUpdated) {
+        Profile profile = profileRepository.findById(idProfile).get();
+
+        final List<Practic> oldPractices = profile.getPractices();
+        if (CollectionUtils.isEqualCollection(oldPractices, practicesExperienceUpdated)) {
+            LOGGER.debug("Practices experience don't contained any updates.");
+            return;
+        } else {
+            practicesExperienceRepository.deleteAll(oldPractices);
+            profile.setPractices(practicesExperienceUpdated);
+            profileRepository.save(profile);
         }
     }
 
@@ -170,14 +210,16 @@ public class EditProfileServiceImpl implements EditProfileService {
     }
 
     @Override
-    public void updatePractices(long idProfile, List<Practic> practices) {
+    public void updatePractices(long idProfile, List<Practic> practicesUpdated) {
         Profile profile = profileRepository.findById(idProfile).get();
 
-        if (CollectionUtils.isEqualCollection(profile.getHobbies(), practices)) {
+        final List<Practic> oldPractices = profile.getPractices();
+        if (CollectionUtils.isEqualCollection(oldPractices, practicesUpdated)) {
             LOGGER.debug("List<Practice> don't contained any updates.");
             return;
         } else {
-            profile.setPractices(practices);
+            practicesExperienceRepository.deleteAll(oldPractices);
+            profile.setPractices(practicesUpdated);
             profileRepository.save(profile);
         }
     }

@@ -32,8 +32,8 @@ public class EditProfileController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EditProfileController.class);
 
-    private static final String uid = "bernadette-rostenkowski"; // TODO: refactor/delete
-//    private static final String uid = "aly-dutta"; // TODO: refactor/delete
+//    private static final String uid = "bernadette-rostenkowski"; // TODO: refactor/delete
+    private static final String uid = "aly-dutta"; // TODO: refactor/delete
 
     @Autowired
     private FindProfileService findProfileService;
@@ -81,13 +81,16 @@ public class EditProfileController {
             return "jsp/edit/contacts";
         }
 
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updateContacts(id, contacts);
         return "redirect:/edit/skills";
     }
 
     @GetMapping(value = "/edit/skills")
     public String getEditSkill(Model model) {
 
-        model.addAttribute("skillForm", editProfileService.findSkillsByUid(uid)); // TODO: remove hardcode
+        final SkillForm skillForm = editProfileService.findSkillsByUid(uid);
+        model.addAttribute("skillForm", skillForm); // TODO: remove hardcode
         return gotoSkillsJSP(model);
     }
 
@@ -97,7 +100,10 @@ public class EditProfileController {
             return gotoSkillsJSP(model);
         }
 
-        return "redirect:/edit/practical-experience"; //todo
+        final Profile profileByUid = findProfileService.findProfileByUid(uid); // TODO replace with id
+
+        editProfileService.updateSkills(profileByUid.getId(), form.getItems());
+        return "redirect:/edit/practical-experience";
     }
 
     @GetMapping(value = "/edit/practical-experience")
@@ -117,7 +123,10 @@ public class EditProfileController {
             return "jsp/edit/experiences";
         }
 
-        return "redirect:/edit/certificates"; //todo
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updatePractices(id, practicForm.getItems());
+
+        return "redirect:/edit/certificates";
     }
 
     @GetMapping(value = "/edit/certificates")

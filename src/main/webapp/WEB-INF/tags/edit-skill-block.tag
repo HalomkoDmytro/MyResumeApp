@@ -8,11 +8,13 @@
 
 <div id="ui-item-${index}" class="row ui-item skill-item">
     <div class="col-xs-5 col-sm-4 col-md-2 form-group">
-        <select name="items[${index}].id" class="form-control">
-            <c:forEach var="category" items="${skillCategories}">
-                <option value="${category.id }" ${category.id== skill.id ? ' selected="selected"' : '' } > ${category.category}</option>
+
+        <select name="items[${index}].category" class="form-control">
+            <c:forEach var="skillCategorie" items="${skillCategories}">
+                <option value="${skillCategorie.category }" ${skillCategorie.category== skill.category ? ' selected="selected"' : '' } > ${skillCategorie.category}</option>
             </c:forEach>
         </select>
+
     </div>
     <div class="col-xs-7 col-sm-8 col-md-10 value-container">
         <button type="button" class="close" onclick="$('#ui-item-${index }').removeAll();">

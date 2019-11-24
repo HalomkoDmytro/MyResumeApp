@@ -1,5 +1,6 @@
 package com.myresume.service;
 
+import com.myresume.entity.Contacts;
 import com.myresume.entity.CurrentProfile;
 import com.myresume.entity.Hobby;
 import com.myresume.entity.Language;
@@ -20,7 +21,12 @@ public interface EditProfileService {
 
     List<SkillCategory> listCategories();
 
+
+    void updateContacts(long idProfile, Contacts contacts);
+
     void updateSkills(long idProfile, List<Skill> skills);
+
+    void updateCertificate(long idProfile, List<Practic> practicesExperience);
 
     SkillForm findSkillsByUid(String uid);
 

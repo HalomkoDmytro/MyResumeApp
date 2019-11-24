@@ -54,5 +54,5 @@ public class FindProfileServiceImpl implements FindProfileService {
         return profileSearchRepository.findByFirstNameLikeOrLastNameLikeOrObjectiveLikeOrSummaryLikeOrInfoLikeOrCertificatesNameLikeOrLanguagesNameLikeOrPracticesCompanyLikeOrPracticesPositionLikeOrPracticesResponsibilitiesLikeOrSkillsValueLike
                 (query, query, query, query, query, query, query, query, query, query, query, pageable);
     }
-    
+
 }

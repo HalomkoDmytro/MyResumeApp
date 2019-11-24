@@ -26,7 +26,7 @@ public class Skill implements Serializable, ProfileCollectionField, ProfileEntit
     @Id
     @SequenceGenerator(name = "SKILL_ID_GENERATOR", sequenceName = "SKILL_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SKILL_ID_GENERATOR")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private Long id;
 
     @Column(length = 50)
