@@ -61,10 +61,10 @@ public class Profile {
     @EnglishLanguage(withSpechSymbols = false, withNumber = false)
     private String country;
 
-    @Column(length = 50)
+    @Column(length = 50, name = "first_name")
     private String firstName;
 
-    @Column(length = 50)
+    @Column(length = 50, name = "last_name")
     private String lastName;
 
     @Column

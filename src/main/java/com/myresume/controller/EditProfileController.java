@@ -52,14 +52,16 @@ public class EditProfileController {
 
     @PostMapping(value = "/edit/edit-personal-info")
     public String saveProfileGeneralInfo(@ModelAttribute("profile") @Valid GeneralInfoForm profileForm, BindingResult bindingResult, Model model) {
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
         if (bindingResult.hasErrors()) {
-            final GeneralInfoForm generalInfo = profileForm;
-            model.addAttribute("profile", generalInfo);
-            model.addAttribute("birthDay", generalInfo.getBirthDay());
+//            final GeneralInfoForm generalInfo = profileForm;
+            model.addAttribute("profile", profileForm);
+            model.addAttribute("birthDay", profileForm.getBirthDay());
             model.addAttribute("tabName", "editGeneral");
             return "jsp/edit/edit-personal-info";
         }
 
+        editProfileService.updateProfileMainInfo(id, profileForm);
         return "redirect:/edit/contacts";
     }
 

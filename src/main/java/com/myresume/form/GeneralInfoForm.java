@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -17,13 +18,17 @@ import java.util.Date;
 @Setter
 public class GeneralInfoForm {
 
+    @Size(max = 50)
+    private String firstName;
+
+    @Size(max = 50)
+    private String lastName;
+
     @EnglishLanguage(withSpechSymbols = false)
-    @NotEmpty
     @Size(max = 60)
     private String country;
 
     @EnglishLanguage(withSpechSymbols = false)
-    @NotEmpty
     @Size(max = 100)
     private String city;
 
@@ -42,13 +47,12 @@ public class GeneralInfoForm {
     private String phone;
 
     @Size(max = 100)
-    @NotEmpty
     @EnglishLanguage
-    @Email
     private String email;
-
-    private String info;
 
     @EnglishLanguage
     private String summary;
+
+    @EnglishLanguage
+    private String objective;
 }

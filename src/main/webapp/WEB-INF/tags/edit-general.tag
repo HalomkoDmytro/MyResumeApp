@@ -11,8 +11,12 @@
 
         <div>
             <h2 class="text-center">${profile.firstName}&emsp;${profile.lastName}</h2>
+            <form:input path="firstName"  type="hidden" id="firstName" />
+            <form:input path="lastName"  type="hidden" id="lastName" />
+
         </div>
         <hr>
+<!--        TODO fix error form  -->
 
         <div class="row">
             <div class="col-2">

@@ -22,7 +22,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
 
