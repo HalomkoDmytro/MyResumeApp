@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @Entity
-public class Language implements Serializable, Comparable<Language>, ProfileCollectionField {
+public class Language implements Serializable, Comparable<Language>, ProfileCollectionField, ProfileEntity {
 
     private static final long serialVersionUID = 1L;
 

@@ -21,7 +21,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "profile")
 @Entity
-public class Course extends AbstractFinishDateEntity<Course> implements Serializable, ProfileCollectionField, Comparable<Course> {
+public class Course extends AbstractFinishDateEntity<Course> implements Serializable, ProfileCollectionField, Comparable<Course>, ProfileEntity {
 
     private static final long serialVersionUID = 4206575925684228495L;
 

@@ -12,6 +12,7 @@
         </button>
     </div>
 
+<!--    todo add summary-->
     <div class="form-group">
         <div class="row">
             <div class="col">

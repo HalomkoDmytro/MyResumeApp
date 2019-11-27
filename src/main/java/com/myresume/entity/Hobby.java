@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
-public class Hobby implements Serializable, Comparable<Hobby>, ProfileCollectionField {
+public class Hobby implements Serializable, Comparable<Hobby>, ProfileCollectionField, ProfileEntity {
 
     private static final long serialVersionUID = 1L;
 

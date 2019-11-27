@@ -3,6 +3,7 @@ package com.myresume.service;
 import com.myresume.entity.Certificate;
 import com.myresume.entity.Contacts;
 import com.myresume.entity.Course;
+import com.myresume.entity.Education;
 import com.myresume.entity.Hobby;
 import com.myresume.entity.Language;
 import com.myresume.entity.Practic;
@@ -33,6 +34,10 @@ public interface EditProfileService {
     void updateHobbies(long idProfile, List<Hobby> hobbies);
 
     void updatePractices(long idProfile, List<Practic> practices);
+
+    void updateEducation(long idProfile, List<Education> educations);
+
+    void updateAdditionalInfo(long idProfile, String newInfo);
 
     void updateLanguages(long idProfile, List<Language> practices);
 

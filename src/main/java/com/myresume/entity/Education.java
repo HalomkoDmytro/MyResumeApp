@@ -24,7 +24,7 @@ import java.io.Serializable;
 @Table(name = "education")
 @FirstFieldLessThanSecond(first = "beginYear", second = "finishYear", message = "Begin date must be before finish date!")
 // TODO: add EnableFormErrorConversion
-public class Education implements Serializable, ProfileCollectionField, Comparable<Education> {
+public class Education implements Serializable, ProfileCollectionField, Comparable<Education>, ProfileEntity {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -37,15 +37,15 @@ public class Education implements Serializable, ProfileCollectionField, Comparab
     @EnglishLanguage(withSpechSymbols = false)
     private String faculty;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     @EnglishLanguage(withSpechSymbols = false)
-    private String summary;
+    private String summary = "";
 
     @Column(nullable = false)
     @EnglishLanguage(withSpechSymbols = false)
     private String university;
 
-    @Column(name = "begin_year", nullable = false)
+    @Column(name = "begin_year")
     private Integer beginYear;
 
     @Column(name = "end_year")
@@ -72,7 +72,6 @@ public class Education implements Serializable, ProfileCollectionField, Comparab
                 ", university='" + university + '\'' +
                 ", beginYear=" + beginYear +
                 ", finishYear=" + finishYear +
-                ", id_profile=" + profile.getId() +
                 '}';
     }
 }

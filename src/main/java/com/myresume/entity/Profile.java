@@ -168,27 +168,27 @@ public class Profile {
 
     public void setEducations(List<Education> educations) {
         this.educations = educations;
-        updateListSetProfile(this.skills);
+        updateListSetProfile(this.educations);
     }
 
     public void setHobbies(List<Hobby> hobbies) {
         this.hobbies = hobbies;
-        updateListSetProfile(this.skills);
+        updateListSetProfile(this.hobbies);
     }
 
     public void setLanguages(List<Language> languages) {
         this.languages = languages;
-        updateListSetProfile(this.skills);
+        updateListSetProfile(this.languages);
     }
 
     public void setPractices(List<Practic> practices) {
         this.practices = practices;
-        updateListSetProfile(this.skills);
+        updateListSetProfile(this.practices);
     }
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
-        updateListSetProfile(this.skills);
+        updateListSetProfile(this.courses);
     }
 
     private void updateListSetProfile(List<? extends ProfileEntity> list) {

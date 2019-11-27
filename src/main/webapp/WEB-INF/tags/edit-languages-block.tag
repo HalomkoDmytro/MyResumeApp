@@ -8,7 +8,7 @@
 
 <div id="ui-item-${index}" class="container ui-item skill-item border m-1">
     <div class="value-container ui-ite">
-        <button type="button" class="close" onclick="$('#ui-item-${index }').remove();">
+        <button type="button" class="close" onclick="$('#ui-item-${index}').remove();">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>

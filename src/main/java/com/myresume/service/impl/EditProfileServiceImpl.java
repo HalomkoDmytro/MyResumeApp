@@ -3,6 +3,7 @@ package com.myresume.service.impl;
 import com.myresume.entity.Certificate;
 import com.myresume.entity.Contacts;
 import com.myresume.entity.Course;
+import com.myresume.entity.Education;
 import com.myresume.entity.Hobby;
 import com.myresume.entity.Language;
 import com.myresume.entity.Practic;
@@ -14,6 +15,9 @@ import com.myresume.form.GeneralInfoForm;
 import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
 import com.myresume.repository.dao.CourseRepository;
+import com.myresume.repository.dao.EducationRepository;
+import com.myresume.repository.dao.HobbyRepository;
+import com.myresume.repository.dao.LanguageRepository;
 import com.myresume.repository.dao.PracticesExperienceRepository;
 import com.myresume.repository.dao.ProfileRepository;
 import com.myresume.repository.dao.SkillCategoryRepository;
@@ -58,7 +62,16 @@ public class EditProfileServiceImpl implements EditProfileService {
     private PracticesExperienceRepository practicesExperienceRepository;
 
     @Autowired
+    private EducationRepository educationRepository;
+
+    @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private LanguageRepository languageRepository;
+
+    @Autowired
+    private HobbyRepository hobbyRepository;
 
     @Autowired
     private SkillCategoryRepository skillCategoryRepository;
@@ -98,12 +111,14 @@ public class EditProfileServiceImpl implements EditProfileService {
             @Override
             public void afterCommit() {
                 LOGGER.info("New profile created:{}", profile.getUid());
+
                 profile.setCertificates(Collections.EMPTY_LIST);
                 profile.setLanguages(Collections.EMPTY_LIST);
                 profile.setPractices(Collections.EMPTY_LIST);
                 profile.setSkills(Collections.EMPTY_LIST);
                 profile.setCourses(Collections.EMPTY_LIST);
                 profileSearchRepository.save(profile);
+
                 LOGGER.info("New profile index created: {}", profile.getUid());
             }
         });
@@ -212,15 +227,31 @@ public class EditProfileServiceImpl implements EditProfileService {
             throw new CantCompleteClientRequestException("Detected more than " + maxProfileHobbies + " hobbies for profile: currentProfile=" + "" + ", hobbies=" + updatedHobbies);
         }
 
-        if (CollectionUtils.isEqualCollection(profile.getHobbies(), updatedHobbies)) {
+        final List<Hobby> oldHobby = profile.getHobbies();
+        if (CollectionUtils.isEqualCollection(oldHobby, updatedHobbies)) {
             LOGGER.debug("List<Hobby> don't contained any updates.");
         } else {
+            hobbyRepository.deleteAll(oldHobby);
             profile.setHobbies(updatedHobbies);
             profileRepository.save(profile);
         }
     }
 
     @Override
+    public void updateAdditionalInfo(long idProfile, String newInfo) {
+        Profile profile = profileRepository.findById(idProfile).get();
+
+        final String oldInfo = profile.getInfo();
+        if (oldInfo != null && oldInfo.equals(newInfo)) {
+            LOGGER.debug("Additional info don't contained any updates.");
+        } else {
+            profile.setInfo(newInfo);
+            profileRepository.save(profile);
+        }
+    }
+
+    @Override
+    @Transactional
     public void updatePractices(long idProfile, List<Practic> practicesUpdated) {
         Profile profile = profileRepository.findById(idProfile).get();
 
@@ -235,6 +266,22 @@ public class EditProfileServiceImpl implements EditProfileService {
     }
 
     @Override
+    @Transactional
+    public void updateEducation(long idProfile, List<Education> educations) {
+        Profile profile = profileRepository.findById(idProfile).get();
+
+        final List<Education> oldEducation = profile.getEducations();
+        if (CollectionUtils.isEqualCollection(oldEducation, educations)) {
+            LOGGER.debug("List<Education> don't contained any updates.");
+        } else {
+            educationRepository.deleteAll(oldEducation);
+            profile.setEducations(educations);
+            profileRepository.save(profile);
+        }
+    }
+
+    @Override
+    @Transactional
     public void updateCourses(long idProfile, List<Course> updatedCourses) {
         Profile profile = profileRepository.findById(idProfile).get();
 
@@ -248,15 +295,17 @@ public class EditProfileServiceImpl implements EditProfileService {
         }
     }
 
-
     @Override
-    public void updateLanguages(long idProfile, List<Language> languages) {
+    @Transactional
+    public void updateLanguages(long idProfile, List<Language> updatedLanguages) {
         Profile profile = profileRepository.findById(idProfile).get();
 
-        if (CollectionUtils.isEqualCollection(profile.getHobbies(), languages)) {
+        final List<Language> oldLanguages = profile.getLanguages();
+        if (CollectionUtils.isEqualCollection(oldLanguages, updatedLanguages)) {
             LOGGER.debug("List<Language> don't contained any updates.");
         } else {
-            profile.setLanguages(languages);
+            languageRepository.deleteAll(oldLanguages);
+            profile.setLanguages(updatedLanguages);
             profileRepository.save(profile);
         }
     }

@@ -31,7 +31,7 @@ import java.util.Objects;
 @Table(name = "practic")
 @FirstFieldLessThanSecond(first = "beginDate", second = "finishDate", message = "End date must be after start date.")
 // TODO: add EnableFormErrorConversion
-public class Practic extends AbstractFinishDateEntity<Practic> implements Serializable, ProfileCollectionField, Comparable<Practic> {
+public class Practic extends AbstractFinishDateEntity<Practic> implements Serializable, ProfileCollectionField, Comparable<Practic>, ProfileEntity {
 
     @Id
     @SequenceGenerator(name = "PRACTIC_ID_GENERATOR", sequenceName = "PRACTIC_SEQ", allocationSize = 1)

@@ -157,6 +157,9 @@ public class EditProfileController {
             return "jsp/edit/courses";
         }
 
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updateCourses(id, courseFrom.getItems());
+
         return "redirect:/edit/education"; //todo
     }
 
@@ -176,6 +179,9 @@ public class EditProfileController {
             model.addAttribute("educationForm", educationForm);
             return "jsp/edit/education";
         }
+
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updateEducation(id, educationForm.getItems());
 
         return "redirect:/edit/languages";
     }
@@ -201,6 +207,9 @@ public class EditProfileController {
             return "jsp/edit/languages";
         }
 
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updateLanguages(id, languageForm.getItems());
+
         return "redirect:/edit/hobbies";
     }
 
@@ -221,6 +230,8 @@ public class EditProfileController {
             model.addAttribute("hobbies", hobbyForm);
             return "jsp/edit/hobbies";
         }
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updateHobbies(id, hobbyForm.getItems());
 
         return "redirect:/edit/info";
     }
@@ -242,6 +253,8 @@ public class EditProfileController {
             return "jsp/edit/info";
         }
 
+        final Long id = findProfileService.findProfileByUid(uid).getId();// TODO replace with id
+        editProfileService.updateAdditionalInfo(id, infoForm.getInfo());
         return "redirect:/edit/info";
     }
 
