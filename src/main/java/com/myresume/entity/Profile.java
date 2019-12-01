@@ -221,4 +221,9 @@ public class Profile {
                 ", created=" + created +
                 '}';
     }
+
+    public String getFullName() {
+
+        return "";
+    }
 }

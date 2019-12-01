@@ -10,6 +10,7 @@ import com.myresume.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,9 @@ import java.util.List;
 public class PublicController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PublicController.class);
+
+    @Value("${search.max.profile.per.page}")
+    private int MAX_PROFILE_PER_PAGE;
 
     @Autowired
     private NameService nameService;
@@ -57,7 +61,7 @@ public class PublicController {
 
     @RequestMapping("/welcome")
     public String welcome(Model model) {
-        Page<Profile> page = findProfileService.findAll(PageRequest.of(0, Constants.MAX_PROFILE_PER_PAGE));
+        Page<Profile> page = findProfileService.findAll(PageRequest.of(0, MAX_PROFILE_PER_PAGE));
         final List<Profile> profiles = page.getContent();
         model.addAttribute("page", page);
         model.addAttribute("profiles", profiles);
@@ -89,7 +93,7 @@ public class PublicController {
 //        QueryBuilder matchPhraseQuery = QueryBuilders.matchPhrasePrefixQuery("firstName", query);
 //        NativeSearchQuery nativeSearchQuery = nativeSearchQueryBuilder.build();
 
-        final Page<Profile> pages = findProfileService.findBySearchQuery(query, PageRequest.of(0, Constants.MAX_PROFILE_PER_PAGE));
+        final Page<Profile> pages = findProfileService.findBySearchQuery(query, PageRequest.of(0, MAX_PROFILE_PER_PAGE));
         final List<Profile> profiles = pages.getContent();
         model.addAttribute("profiles", profiles);
         return "jsp/search-result";

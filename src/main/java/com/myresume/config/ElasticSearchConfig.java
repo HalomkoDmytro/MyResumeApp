@@ -27,33 +27,33 @@ import java.net.UnknownHostException;
 @PropertySource("classpath:elasticsearch.properties")
 public class ElasticSearchConfig {
 
-    @Value("${elasticsearch.home}")
-    private String elasticsearchHome;
-
-    @Value("${elasticsearch.cluster.name}")
-    private String clusterName;
-
-    @Value("${elasticsearch.host}")
-    private String host;
-
-    @Bean
-    public ElasticsearchOperations elasticsearchTemplate() throws UnknownHostException {
-        return new ElasticsearchTemplate(client());
-    }
-
-    @Bean
-    public Client client() throws UnknownHostException {
-        Settings elasticsearchSettings =
-                Settings.builder()
-                        .put("client.transport.sniff", false)
-                        .put("path.home", elasticsearchHome)
-                        .put("cluster.name", clusterName)
-                        .build();
-
-        TransportClient client = new PreBuiltTransportClient(elasticsearchSettings);
-        client.addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
-//        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
-
-        return client;
-    }
+//    @Value("${elasticsearch.home}")
+//    private String elasticsearchHome;
+//
+//    @Value("${elasticsearch.cluster.name}")
+//    private String clusterName;
+//
+//    @Value("${elasticsearch.host}")
+//    private String host;
+//
+//    @Bean
+//    public ElasticsearchOperations elasticsearchTemplate() throws UnknownHostException {
+//        return new ElasticsearchTemplate(client());
+//    }
+//
+//    @Bean
+//    public Client client() throws UnknownHostException {
+//        Settings elasticsearchSettings =
+//                Settings.builder()
+//                        .put("client.transport.sniff", false)
+//                        .put("path.home", elasticsearchHome)
+//                        .put("cluster.name", clusterName)
+//                        .build();
+//
+//        TransportClient client = new PreBuiltTransportClient(elasticsearchSettings);
+//        client.addTransportAddress(new TransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+////        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
+//
+//        return client;
+//    }
 }

@@ -4,15 +4,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class SignInSignUpController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SignInSignUpController.class);
 
-    @GetMapping("/sign-in")
+    @RequestMapping("/sign-in")
     public String singIn() {
-        return "jsp/login";
+        return "jsp/sign-in";
+    }
+
+    @RequestMapping("/sign-in-failed")
+    public String singInFailed(HttpSession session) {
+        if(session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION") == null) {
+            return "redirect:/sign-in";
+        }
+        return "jsp/sign-in";
     }
 
     @GetMapping("/sign-up")
