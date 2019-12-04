@@ -1,7 +1,10 @@
 package com.myresume.controller;
 
+import com.myresume.entity.CurrentProfile;
+import com.myresume.utils.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +16,12 @@ public class SignInSignUpController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SignInSignUpController.class);
 
-    @RequestMapping("/sign-in")
+    @GetMapping("/sign-in")
     public String singIn() {
+        CurrentProfile currentProfile = SecurityUtils.getCurrentProfile();
+        if(currentProfile != null) {
+            return "redirect:/profile/" + currentProfile.getUsername();
+        }
         return "jsp/sign-in";
     }
 
@@ -54,6 +61,12 @@ public class SignInSignUpController {
     @GetMapping("/remove-profile")
     public String removeProfile() {
         return "jsp/remove-profile";
+    }
+
+    @RequestMapping(value = "/my-profile")
+    public String getMyProfile(@AuthenticationPrincipal CurrentProfile currentProfile) {
+//        return "redirect:/" + currentProfile.getUsername();
+        return "redirect:/profile/" + currentProfile.getUsername();
     }
 
 }

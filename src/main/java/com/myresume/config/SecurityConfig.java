@@ -3,11 +3,11 @@ package com.myresume.config;
 import com.myresume.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -15,12 +15,15 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/sign-in")
                 .loginProcessingUrl("/sign-in-handler")
                 .usernameParameter("uid")
-                .passwordParameter("/my-password")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/my-profile")
-                .failureUrl("/");
+                .failureUrl("/sign-in-failed");
 
         http.logout()
-                .logoutUrl("log-out")
+                .logoutUrl("/sign-out")
                 .logoutSuccessUrl("/welcome")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
@@ -48,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMeParameter("remember-me")
                 .key("resume-online")
                 .tokenRepository(persistentTokenRepository());
+
+        http.csrf().disable();
     }
 
     @Bean
@@ -65,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
 }

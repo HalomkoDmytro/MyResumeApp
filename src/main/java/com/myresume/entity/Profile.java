@@ -28,6 +28,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 //import javax.validation.constraints.Email;
 //import javax.validation.constraints.NotEmpty;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.Documented;
 import java.util.ArrayList;
@@ -222,8 +223,8 @@ public class Profile {
                 '}';
     }
 
+    @Transient
     public String getFullName() {
-
-        return "";
+        return firstName + " " + lastName;
     }
 }

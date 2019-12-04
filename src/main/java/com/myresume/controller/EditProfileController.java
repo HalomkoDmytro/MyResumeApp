@@ -33,7 +33,8 @@ public class EditProfileController {
     private static final Logger LOGGER = LoggerFactory.getLogger(EditProfileController.class);
 
 //    private static final String uid = "bernadette-rostenkowski"; // TODO: refactor/delete
-    private static final String uid = "aly-dutta"; // TODO: refactor/delete
+//    private static final String uid = "aly-dutta"; // TODO: refactor/delete
+    private static final String uid = "mike-ross"; // TODO: refactor/delete
 
     @Autowired
     private FindProfileService findProfileService;

@@ -83,5 +83,4 @@ public class AppConfig extends SpringBootServletInitializer {
         return dataSource;
     }
 
-
 }

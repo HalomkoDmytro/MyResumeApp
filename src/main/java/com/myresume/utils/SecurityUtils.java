@@ -1,11 +1,12 @@
 package com.myresume.utils;
 
 import com.myresume.entity.CurrentProfile;
+import com.myresume.entity.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-public class SecurityUtils {
+public final class SecurityUtils {
 
     public static CurrentProfile getCurrentProfile() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -26,9 +27,10 @@ public class SecurityUtils {
         return currentProfile != null ? currentProfile.getId() : null;
     }
 
-    public static void authenticate() {
-        CurrentProfile currentProfile = getCurrentProfile();
-        Authentication authentication = new UsernamePasswordAuthenticationToken(currentProfile, currentProfile.getPassword(), currentProfile.getAuthorities());
+    public static void authenticate(Profile profile) {
+        CurrentProfile currentProfile = new CurrentProfile(profile);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                currentProfile, currentProfile.getPassword(), currentProfile.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 

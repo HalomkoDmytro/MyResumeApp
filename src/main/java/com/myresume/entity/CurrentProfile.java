@@ -18,6 +18,7 @@ public class CurrentProfile extends User {
                 true, Collections.singleton(new SimpleGrantedAuthority(Constants.USER)));
         this.id = profile.getId();
         this.fullName = profile.getFullName();
+//        this.fullName = profile.getUid();
     }
 
     @Override
