@@ -11,6 +11,7 @@ import com.myresume.entity.Profile;
 import com.myresume.entity.Skill;
 import com.myresume.entity.SkillCategory;
 import com.myresume.exceptions.CantCompleteClientRequestException;
+import com.myresume.exceptions.ProfileNotFound;
 import com.myresume.form.GeneralInfoForm;
 import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
@@ -30,12 +31,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -81,6 +83,9 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Autowired
     private ProfileSearchRepository profileSearchRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Value("${profile.max.hobbies}")
     private int maxProfileHobbies;
 
@@ -99,10 +104,10 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Transactional
     public Profile createNewProfile(SignUpForm signUpForm) {
         Profile profile = new Profile();
+        profile.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
         profile.setUid(generateProfileUid(signUpForm));
         profile.setFirstName(DataUtil.capitalizeName(signUpForm.getFirstName()));
         profile.setLastName(DataUtil.capitalizeName(signUpForm.getLastName()));
-        profile.setPassword(signUpForm.getPassword());
         profile.setCompleted(false);
 
         setEmptyData(profile);
@@ -112,6 +117,7 @@ public class EditProfileServiceImpl implements EditProfileService {
         return profile;
     }
 
+    @SuppressWarnings("unchecked")
     private void setEmptyData(Profile profile) {
         profile.setCreated(new Date());
         profile.setCertificates(Collections.EMPTY_LIST);
@@ -124,6 +130,7 @@ public class EditProfileServiceImpl implements EditProfileService {
         profile.setContacts(new Contacts());
     }
 
+    @SuppressWarnings("unchecked")
     private void registerCreateIndexProfileIfTransactionSuccess(final Profile profile) {
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
             @Override
@@ -158,19 +165,68 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Override
     public List<Skill> listSkills(long idProfile) {
-        return profileRepository.findById(idProfile).get().getSkills();
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getSkills();
+    }
+
+    @Override
+    public List<Certificate> listCertificate(long idProfile) {
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getCertificates();
+    }
+
+    @Override
+    public List<Education> listEducation(long idProfile) {
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getEducations();
+    }
+
+    @Override
+    public List<Hobby> listHobby(long idProfile) {
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getHobbies();
+    }
+
+    @Override
+    public List<Language> listLanguage(long idProfile) {
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getLanguages();
+    }
+
+    @Override
+    public List<Practic> listPractice(long idProfile) {
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getPractices();
+    }
+
+    private String profileNotFoundMessage(long idProfile) {
+        return String.format("Profile with id: %d not found", idProfile);
+    }
+
+    @Override
+    public List<Course> listCourses(long idProfile) {
+        return profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)))
+                .getCourses();
     }
 
     @Override
     public List<SkillCategory> listCategories() {
 //        return skillCategoryRepository.findAll(new Sort("id"));
-        return skillCategoryRepository.findAll();
+        return skillCategoryRepository.findAll(); // todo add sorting
     }
 
     @Override
     @Transactional
     public void updateProfileMainInfo(long idProfile, GeneralInfoForm form) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
         profile.setCountry(form.getCountry());
         profile.setCity(form.getCity());
         profile.setBirthDay(form.getBirthDay());
@@ -185,10 +241,11 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updateContacts(long idProfile, Contacts updatedContacts) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final Contacts oldContact = profile.getContacts();
-        if (oldContact.equals(updatedContacts)) {
+        if (oldContact != null && oldContact.equals(updatedContacts)) {
             LOGGER.debug("Contacts don't contained any updates.");
         } else {
             profile.setContacts(updatedContacts);
@@ -199,7 +256,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updateSkills(long idProfile, List<Skill> updatedSkills) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final List<Skill> oldSkills = profile.getSkills();
         if (CollectionUtils.isEqualCollection(oldSkills, updatedSkills)) {
@@ -214,7 +272,8 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Override
     public void updateCertificate(long idProfile, List<Certificate> certificateList) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         // TODO
     }
@@ -230,7 +289,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     }
 
     private void updateIndexProfileSkills(long idProfile, List<Skill> updatedData) {
-        Profile profile = profileSearchRepository.findById(idProfile).get();
+        Profile profile = profileSearchRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
         profile.setSkills(updatedData);
         profileSearchRepository.save(profile);
         LOGGER.info("Profile skills index updated");
@@ -239,7 +299,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updateHobbies(long idProfile, List<Hobby> updatedHobbies) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         if (updatedHobbies.size() > maxProfileHobbies) {
             throw new CantCompleteClientRequestException("Detected more than " + maxProfileHobbies + " hobbies for profile: currentProfile=" + "" + ", hobbies=" + updatedHobbies);
@@ -257,7 +318,8 @@ public class EditProfileServiceImpl implements EditProfileService {
 
     @Override
     public void updateAdditionalInfo(long idProfile, String newInfo) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final String oldInfo = profile.getInfo();
         if (oldInfo != null && oldInfo.equals(newInfo)) {
@@ -271,7 +333,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updatePractices(long idProfile, List<Practic> practicesUpdated) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final List<Practic> oldPractices = profile.getPractices();
         if (CollectionUtils.isEqualCollection(oldPractices, practicesUpdated)) {
@@ -286,7 +349,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updateEducation(long idProfile, List<Education> educations) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final List<Education> oldEducation = profile.getEducations();
         if (CollectionUtils.isEqualCollection(oldEducation, educations)) {
@@ -301,7 +365,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updateCourses(long idProfile, List<Course> updatedCourses) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final List<Course> oldCourses = profile.getCourses();
         if (CollectionUtils.isEqualCollection(oldCourses, updatedCourses)) {
@@ -316,7 +381,8 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Override
     @Transactional
     public void updateLanguages(long idProfile, List<Language> updatedLanguages) {
-        Profile profile = profileRepository.findById(idProfile).get();
+        Profile profile = profileRepository.findById(idProfile)
+                .orElseThrow(() -> new ProfileNotFound(profileNotFoundMessage(idProfile)));
 
         final List<Language> oldLanguages = profile.getLanguages();
         if (CollectionUtils.isEqualCollection(oldLanguages, updatedLanguages)) {

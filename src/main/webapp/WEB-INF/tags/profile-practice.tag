@@ -3,6 +3,9 @@
 
 <div class="card border-primary mb-3">
     <div class=" text-white bg-primary card-header"><i class="fa fa-road" aria-hidden="true"></i> Practice
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <a href="/edit/practical-experience" class="float-right" style="color: white">[Edit]</a>
+        </c:if>
     </div>
     <div class="card-body ">
 

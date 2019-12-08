@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="card border-primary mb-3">
-    <div class=" text-white bg-primary card-header"><i class="fa fa-code" aria-hidden="true"></i> Skills</div>
+    <div class=" text-white bg-primary card-header"><i class="fa fa-code" aria-hidden="true"></i> Skills
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <a href="/edit/skills" class="float-right" style="color: white">[Edit]</a>
+        </c:if></div>
     <div class="card-body ">
         <table class="table table-bordered">
             <thead>

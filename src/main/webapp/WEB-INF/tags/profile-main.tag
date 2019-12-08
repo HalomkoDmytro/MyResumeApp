@@ -12,7 +12,9 @@
     </div>
 
     <ul class="list-group list-group-flush" >
-        <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="false"></i> <a href="tel:${profile.email}"><i class="fab fa-affiliatetheme"></i>email&nbsp;${profile.email}</a></li>
+        <c:if test="${not empty profile.email}">
+            <li class="list-group-item"><i class="fa fa-envelope" aria-hidden="false"></i> <i class="fab fa-affiliatetheme"></i>email&nbsp;<a href="tel:${profile.email}">${profile.email}</a></li>
+        </c:if>
         <c:if test="${not empty contacts.skype}">
             <li class="list-group-item"><i class="fa fa-skype" aria-hidden="true"></i> skype&nbsp;${contacts.skype}</li>
         </c:if>

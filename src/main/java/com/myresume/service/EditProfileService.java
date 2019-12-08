@@ -13,6 +13,7 @@ import com.myresume.entity.SkillCategory;
 import com.myresume.form.GeneralInfoForm;
 import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
+import org.apache.commons.codec.language.bm.Lang;
 
 import java.util.List;
 
@@ -22,8 +23,19 @@ public interface EditProfileService {
 
     List<Skill> listSkills(long idProfile);
 
-    List<SkillCategory> listCategories();
+    List<Certificate> listCertificate(long idProfile);
 
+    List<Education> listEducation(long idProfile);
+
+    List<Hobby> listHobby(long idProfile);
+
+    List<Language> listLanguage(long idProfile);
+
+    List<Practic> listPractice(long idProfile);
+
+    List<Course> listCourses(long idProfile);
+
+    List<SkillCategory> listCategories();
 
     void updateContacts(long idProfile, Contacts contacts);
 

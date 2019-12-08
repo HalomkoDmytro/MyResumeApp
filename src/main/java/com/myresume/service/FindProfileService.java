@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface FindProfileService  {
 
+    Profile findById(Long id);
+
     Page<Profile> findAll(Pageable pageable);
 
     Profile findProfileByUid(String uid);

@@ -3,6 +3,9 @@
 
 <div class="card border-primary mb-3">
     <div class=" text-white bg-primary card-header"><i class="fa fa-language" aria-hidden="true"></i> Languages
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <a href="/edit/languages" class="float-right" style="color: white">[Edit]</a>
+        </c:if>
     </div>
     <div class="card-body ">
         <c:forEach var="profileLanguage" items="${profile.languages}">

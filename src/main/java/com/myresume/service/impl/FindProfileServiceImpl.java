@@ -25,6 +25,11 @@ public class FindProfileServiceImpl implements FindProfileService {
     private ProfileSearchRepository profileSearchRepository;
 
     @Override
+    public Profile findById(Long id) {
+        return profileRepository.findById(id).get();
+    }
+
+    @Override
     public Page<Profile> findAll(Pageable pageable) {
         return profileRepository.findAllByCompletedTrue(pageable);
     }

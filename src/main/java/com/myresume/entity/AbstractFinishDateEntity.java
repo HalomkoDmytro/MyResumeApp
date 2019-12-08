@@ -33,7 +33,7 @@ public abstract class AbstractFinishDateEntity<T> {
     public Integer getFinishDateYear() {
         if (finishDateYear != null) {
             return finishDateYear;
-        } else if (isFinish()) {
+        } else if (isFinish() && finishDate != null) {
             return new DateTime(finishDate).getYear();
         }
         return null;
@@ -42,7 +42,7 @@ public abstract class AbstractFinishDateEntity<T> {
     public Integer getFinishDateMonth() {
         if (finishDateMonth != null) {
             return finishDateMonth;
-        } else if (isFinish()) {
+        } else if (isFinish() && finishDate != null) {
             return new DateTime(finishDate).getMonthOfYear();
         }
         return null;
