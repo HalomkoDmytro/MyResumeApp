@@ -30,7 +30,9 @@
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-success">Sign In</button>
-                <br><br>
+                <br>
+                <a href="/sign-up" >Don't have account</a>
+                <br>
                 <a href="#" >Restore asses</a>
             </div>
         </form>

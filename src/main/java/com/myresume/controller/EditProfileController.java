@@ -44,6 +44,7 @@ public class EditProfileController {
 
     @GetMapping(value = "/edit/edit-personal-info")
     public String editProfileGeneral(Model model) throws ParseException {
+//        final Profile profile = findProfileService.findProfileByUid(uid);
         final Profile profile = findProfileService.findProfileByUid(uid);
         model.addAttribute("profile", profile);
         model.addAttribute("birthDay", profile.getBirthDay());

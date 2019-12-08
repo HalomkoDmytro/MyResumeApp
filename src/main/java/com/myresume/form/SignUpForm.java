@@ -5,7 +5,6 @@ import com.myresume.annotation.constraints.FieldMatch;
 import com.myresume.annotation.constraints.PasswordStrength;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,16 +17,14 @@ public class SignUpForm {
     @NotNull
     @Size(max = 50)
     @EnglishLanguage(withSpechSymbols = false)
-    @SafeHtml
     private String firstName;
 
     @NotNull
     @Size(max = 50)
     @EnglishLanguage(withSpechSymbols = false)
-    @SafeHtml
     private String lastName;
 
-    @PasswordStrength
+//    @PasswordStrength
     private String password;
 
     private String confirmPassword;

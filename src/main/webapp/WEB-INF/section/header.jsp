@@ -9,7 +9,12 @@
         <form action="/profile/search" method="post" class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            &nbsp;<a href="/sign-in">Sign in</a>&nbsp;<a href="/sign-out">Sign out</a>
+            <c:if test="${pageContext.request.userPrincipal.name == null}">
+                <a href="/sign-in">Sign in</a>|<a href="/sign-up">Registration</a>
+            </c:if>&nbsp;
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <a href="/sign-out">Sign out</a>
+            </c:if>
         </form>
 
     </nav>

@@ -35,7 +35,9 @@ import org.springframework.transaction.support.TransactionSynchronizationAdapter
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -94,6 +96,7 @@ public class EditProfileServiceImpl implements EditProfileService {
     }
 
     @Override
+    @Transactional
     public Profile createNewProfile(SignUpForm signUpForm) {
         Profile profile = new Profile();
         profile.setUid(generateProfileUid(signUpForm));
@@ -101,9 +104,24 @@ public class EditProfileServiceImpl implements EditProfileService {
         profile.setLastName(DataUtil.capitalizeName(signUpForm.getLastName()));
         profile.setPassword(signUpForm.getPassword());
         profile.setCompleted(false);
+
+        setEmptyData(profile);
+
         profileRepository.save(profile);
         registerCreateIndexProfileIfTransactionSuccess(profile);
         return profile;
+    }
+
+    private void setEmptyData(Profile profile) {
+        profile.setCreated(new Date());
+        profile.setCertificates(Collections.EMPTY_LIST);
+        profile.setEducations(Collections.EMPTY_LIST);
+        profile.setHobbies(Collections.EMPTY_LIST);
+        profile.setLanguages(Collections.EMPTY_LIST);
+        profile.setPractices(Collections.EMPTY_LIST);
+        profile.setSkills(Collections.EMPTY_LIST);
+        profile.setCourses(Collections.EMPTY_LIST);
+        profile.setContacts(new Contacts());
     }
 
     private void registerCreateIndexProfileIfTransactionSuccess(final Profile profile) {

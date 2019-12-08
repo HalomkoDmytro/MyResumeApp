@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = {})
-@Size(min = 8)
+@Size(min = 6, message = "Min length 6 character!")
 @NotNull
 @MinDigitCount
 @MinUpperCharCount

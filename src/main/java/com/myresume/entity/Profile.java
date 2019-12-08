@@ -3,15 +3,12 @@ package com.myresume.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import com.myresume.annotation.constraints.Adulthood;
 import com.myresume.annotation.constraints.EnglishLanguage;
 import com.myresume.annotation.constraints.Phone;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-//import org.hibernate.validator.constraints.Email;
-//import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,14 +23,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
-//import javax.validation.constraints.Email;
-//import javax.validation.constraints.NotEmpty;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+//import org.hibernate.validator.constraints.Email;
+//import org.hibernate.validator.constraints.NotEmpty;
+//import javax.validation.constraints.Email;
+//import javax.validation.constraints.NotEmpty;
 
 //import org.hibernate.validator.constraints.SafeHtml;
 
@@ -69,7 +67,7 @@ public class Profile {
     private String lastName;
 
     @Column
-    @NotNull
+//    @NotNull
     @EnglishLanguage
     private String objective;
 
