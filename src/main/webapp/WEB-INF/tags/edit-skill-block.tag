@@ -17,7 +17,7 @@
 
     </div>
     <div class="col-xs-7 col-sm-8 col-md-10 value-container">
-        <button type="button" class="close" onclick="$('#ui-item-${index }').removeAll();">
+        <button type="button" class="close" onclick="$('#ui-item-${index }').remove();">
             <span aria-hidden="true">&times;</span>
         </button>
         <textarea name="items[${index}].value" class="form-control pull-right" required="required" rows="2">${skill.value }</textarea>

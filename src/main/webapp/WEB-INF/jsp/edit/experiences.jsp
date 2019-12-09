@@ -28,7 +28,7 @@
                 <hr>
 
                 <div>
-                    <a href="javascript:void(0);">+Add</a>
+                    <a href="javascript:resume.ui.addBlock();">+Add</a>
                 </div>
 
                 <hr>
@@ -41,3 +41,6 @@
     </div>
 
 </div>
+<script id="ui-block-template" type="text/x-handlebars-template">
+    <resume:edit-practical-exp-block index="{{blockindex}}" />
+</script>

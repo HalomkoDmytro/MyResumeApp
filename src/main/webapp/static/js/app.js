@@ -1,21 +1,21 @@
-// --- load photo ---
-$(document).on("click", ".browse", function () {
-    var file = $(this).parents().find(".file");
-    file.trigger("click");
-});
-$('input[type="file"]').change(function (e) {
-    var fileName = e.target.files[0].name;
-    $("#file").val(fileName);
-
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        // get loaded data and render thumbnail.
-        document.getElementById("preview").src = e.target.result;
-    };
-    // read the image file as a data URL.
-    reader.readAsDataURL(this.files[0]);
-});
-// --- END load photo ---
+// // --- load photo ---
+// $(document).on("click", ".browse", function () {
+//     var file = $(this).parents().find(".file");
+//     file.trigger("click");
+// });
+// $('input[type="file"]').change(function (e) {
+//     var fileName = e.target.files[0].name;
+//     $("#file").val(fileName);
+//
+//     var reader = new FileReader();
+//     reader.onload = function (e) {
+//         // get loaded data and render thumbnail.
+//         document.getElementById("preview").src = e.target.result;
+//     };
+//     // read the image file as a data URL.
+//     reader.readAsDataURL(this.files[0]);
+// });
+// // --- END load photo ---
 
 var resume = {
 
@@ -57,5 +57,29 @@ var resume = {
 
     showErrorDialog: function (message) {
         alert(message);
+    },
+
+    ui: {
+
+        template: null,
+
+        getTemplate: function () {
+            if (resume.ui.template == null) {
+                var source = $("#ui-block-template").html();
+                resume.ui.template = Handlebars.compile(source);
+            }
+            return resume.ui.template;
+        },
+
+        addBlock: function () {
+            var template = resume.ui.getTemplate();
+            var container = $('#ui-block-container');
+            var blockIndex = container.find('.ui-item').length;
+            var context = {
+                blockindex: blockIndex
+            }
+            container.append(template(context));
+
+        }
     }
 }

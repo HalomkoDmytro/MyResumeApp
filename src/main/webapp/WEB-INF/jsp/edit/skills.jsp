@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="javascript:void(0);">+Add skill</a>
+                        <a href="javascript:resume.ui.addBlock()">+Add skill</a>
                     </div>
                 </div>
                 <hr>
@@ -39,5 +39,8 @@
         </div>
     </div>
 </div>
+<script id="ui-block-template" type="text/x-handlebars-template">
+    <resume:edit-skill-block index="{{blockindex}}" />
+</script>
 
 

@@ -25,7 +25,7 @@
                     </c:forEach>
                 </div>
                 <div>
-                    <a href="javascript:void(0);">+Add</a>
+                    <a href="javascript:resume.ui.addBlock();">+Add</a>
                 </div>
 
                 <hr>
@@ -36,3 +36,6 @@
         </form:form>
     </div>
 </div>
+<script id="ui-block-template" type="text/x-handlebars-template">
+    <resume:edit-hobby index="{{blockindex}}" />
+</script>
