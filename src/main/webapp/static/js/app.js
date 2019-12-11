@@ -80,6 +80,31 @@ var resume = {
             }
             container.append(template(context));
 
+        },
+
+        removeBlock: function (index) {
+            var container = $('#ui-block-container');
+            var length = container.find('.ui-item').length;
+            $('#ui-item-' + index).remove();
+            resume.ui.replaceWithLast(index, length);
+        },
+
+        replaceWithLast: function (index, length) {
+            var lastOldIndex = length - 1;
+            var lastElement = '#ui-item-' + lastOldIndex;
+            var container = $(lastElement);
+
+            $(lastElement).attr('id', 'ui-item-' + index);
+            var itemName = "items[" + lastOldIndex + "]";
+            var allListElements = $('[name^=\"' + itemName + '\"]');
+
+            for(var i = 0; i < allListElements.length; i++) {
+                var name = allListElements[i].getAttribute('name');
+                var posStart = name.indexOf('[') + 1;
+                var posEnd = name.indexOf(']');
+                var newAttrName = name.substring(0, posStart) + index + name.substring(posEnd, name.length);
+                allListElements[i].setAttribute('name', newAttrName);
+            }
         }
     }
 }
