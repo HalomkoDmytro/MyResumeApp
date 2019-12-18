@@ -26,4 +26,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
     List<Profile> findByCompletedFalseAndCreatedBefore(Timestamp oldDate);
 
+    Profile findByUidOrEmailOrPhone(String uid, String email, String phone);
+
 }

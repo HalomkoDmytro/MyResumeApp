@@ -43,7 +43,7 @@ public class FindProfileServiceImpl implements FindProfileService {
     @Transactional
     public Iterable<Profile> findAllForIndexing() {
         final Iterable<Profile> all = profileRepository.findAll();
-        for(Profile p : all) {
+        for (Profile p : all) {
             p.getSkills().size();
             p.getCertificates().size();
             p.getLanguages().size();
@@ -55,8 +55,14 @@ public class FindProfileServiceImpl implements FindProfileService {
 
     @Override
     public Page<Profile> findBySearchQuery(String query, Pageable pageable) {
+        LOGGER.info("Looking profile by query: {}", query);
         return profileSearchRepository.findByFirstNameLikeOrLastNameLikeOrObjectiveLikeOrSummaryLikeOrInfoLikeOrCertificatesNameLikeOrLanguagesNameLikeOrPracticesCompanyLikeOrPracticesPositionLikeOrPracticesResponsibilitiesLikeOrSkillsValueLike
                 (query, query, query, query, query, query, query, query, query, query, query, pageable);
     }
 
+    @Override
+    public Profile findByUIDOrEmailOrPhone(String param) {
+        LOGGER.info("Looking profile by uid or email or phone with param {}", param);
+        return profileRepository.findByUidOrEmailOrPhone(param, param, param);
+    }
 }

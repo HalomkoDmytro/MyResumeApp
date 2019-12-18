@@ -18,4 +18,6 @@ public interface FindProfileService  {
     Iterable<Profile> findAllForIndexing();
 
     Page<Profile> findBySearchQuery(String query, Pageable pageable);
+
+    Profile findByUIDOrEmailOrPhone(String param);
 }

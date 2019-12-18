@@ -37,7 +37,6 @@ import org.springframework.transaction.support.TransactionSynchronizationAdapter
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -108,6 +107,7 @@ public class EditProfileServiceImpl implements EditProfileService {
         profile.setUid(generateProfileUid(signUpForm));
         profile.setFirstName(DataUtil.capitalizeName(signUpForm.getFirstName()));
         profile.setLastName(DataUtil.capitalizeName(signUpForm.getLastName()));
+        profile.setEmail(signUpForm.getEmail());
         profile.setCompleted(false);
 
         setEmptyData(profile);

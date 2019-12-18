@@ -2,18 +2,10 @@ package com.myresume.config;
 
 import com.myresume.filter.CustomSiteMashFilter;
 import com.myresume.filter.ErrorFilter;
-import org.apache.catalina.Context;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.tomcat.util.scan.StandardJarScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
-//import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientAutoConfiguration;
-//import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientAutoConfiguration;
-//import org.springframework.boot.autoconfigure.elasticsearch.rest.RestClientAutoConfiguration;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +15,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -61,11 +52,13 @@ public class AppConfig extends SpringBootServletInitializer {
     }
 
     @Bean
-    public ViewResolver viewResolver() {
+    public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/");
         viewResolver.setSuffix(".jsp");
+        viewResolver.setViewNames("jsp/*");
+        viewResolver.setOrder(0);
         return viewResolver;
     }
 

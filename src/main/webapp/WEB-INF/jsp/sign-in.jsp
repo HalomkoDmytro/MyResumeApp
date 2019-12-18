@@ -34,6 +34,8 @@
                 <a href="/sign-up" >Don't have account</a>
                 <br>
                 <a href="#" >Restore asses</a>
+                <br>
+                <a href="/fbLogin" >Sign is with Facebook</a>
             </div>
         </form>
     </div>

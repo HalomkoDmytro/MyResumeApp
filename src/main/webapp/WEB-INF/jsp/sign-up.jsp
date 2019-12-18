@@ -10,23 +10,29 @@
         <form:form action="/sign-up" method="post" modelAttribute="signUpForm">
             <div class="form-group">
                 <label for="firstName">First Name</label>
-                <form:input path="firstName" type="text" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="Enter first name"  />
+                <form:input path="firstName" type="text" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="Enter first name"  required="required"/>
                 <br>
                 <form:errors path="firstName" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="form-group">
                 <label for="lastName">Second name</label>
-                <form:input path="lastName" type="text" class="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Enter second name"  />
+                <form:input path="lastName" type="text" class="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Enter second name"  required="required"/>
                 <br>
                 <form:errors path="lastName" cssClass="alert alert-danger" element="div"/>
             </div>
             <div class="form-group">
+                <label for="email">Email</label>
+                <form:input path="email" type="email" maxlength="100" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter valid email" required="required"/>
+                <br>
+                <form:errors path="email" cssClass="alert alert-danger" element="div"/>
+            </div>
+            <div class="form-group">
                 <label for="password">Password</label>
-                <form:input path="password" type="password" class="form-control" id="password" placeholder="Password" />
+                <form:input path="password" type="password" class="form-control" id="password" placeholder="Password" required="required"/>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Password Confirmation</label>
-                <form:input path="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Repeat password" />
+                <form:input path="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Repeat password" required="required"/>
                 <br>
                 <form:errors path="password" cssClass="alert alert-danger" element="div"/>
             </div>
