@@ -28,6 +28,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- send email -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -37,6 +43,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <dependency>
@@ -59,25 +70,6 @@
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
             <!--            <version>1.5.21.RELEASE</version>-->
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.data</groupId>-->
-<!--            <artifactId>spring-data-elasticsearch</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.data</groupId>-->
-<!--            <artifactId>spring-data-elasticsearch</artifactId>-->
-<!--            <version>3.0.1.RELEASE</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons-core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.data</groupId>-->
-<!--            <artifactId>spring-data-commons</artifactId>-->
-<!--&lt;!&ndash;            <version>2.1.12.RELEASE</version>&ndash;&gt;-->
-<!--        </dependency>-->
 
         <!-- Tomcat embedded container-->
         <dependency>
@@ -195,6 +187,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 
