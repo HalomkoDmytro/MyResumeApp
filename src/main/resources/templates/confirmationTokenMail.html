@@ -8,8 +8,8 @@
 <hr>
 <p>Hello, this mail was used to create account at <a href="http://localhost:8080/welcome">MyResume</a>.
     <br>To confirm your email follow the link:
-    <a href="http://localhost:8080/confirmation-email?token=${message}">ACTIVATION EMAIL LINK</a>
-    <span th:text="${message}"></span>
+    <a th:href="@{'http://localhost:8080/confirmation-email?token=' + ${message}}">ACTIVATION EMAIL LINK</a>
+    <br>
 </p>
 <hr>
 </body>

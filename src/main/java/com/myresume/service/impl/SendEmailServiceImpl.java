@@ -64,7 +64,7 @@ public class SendEmailServiceImpl implements SendEmailService {
             messageHelper.setTo(recipient);
             messageHelper.setSubject("Confirmation email");
 
-            String content = mailContentBuilder.buildSimpleMessageContent("http://localhost:8082/confirm-account?token=" + confirmationToken, "confirmationTokenMail");
+            String content = mailContentBuilder.buildSimpleMessageContent(confirmationToken, "confirmationTokenMail");
             messageHelper.setText(content, true);
         };
 

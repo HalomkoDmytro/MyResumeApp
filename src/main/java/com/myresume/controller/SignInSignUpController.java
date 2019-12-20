@@ -15,6 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -76,16 +77,16 @@ public class SignInSignUpController {
     }
 
     @PostMapping("/sign-up")
+    @Transactional
     public String signUpHandler(@ModelAttribute("signUpForm") @Valid SignUpForm signUpForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("signUpForm", signUpForm);
             return "jsp/sign-up";
         } else if (!emailNotUsed(signUpForm.getEmail())) {
-//            ObjectError error = new ObjectError("email","An account already exists for this email.");
-//            bindingResult.rejectValue("email", "An account already exists for this email.");
-            // todo fix
-//            return "jsp/sign-up";
+            FieldError fieldError = new FieldError("signUpForm", "email", "This email already used.");
+            bindingResult.addError(fieldError);
+            return "jsp/sign-up";
         }
         final Profile newProfile = editProfileService.createNewProfile(signUpForm);
 

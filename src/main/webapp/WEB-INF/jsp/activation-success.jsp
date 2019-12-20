@@ -6,10 +6,7 @@
     <div class="card-body ">
         <p>Your account was activated successful.</p>
         <div class="text-center">
-<%--            <form action="/edit/edit-personal-info" method="get">--%>
-<%--                <button type="submit" class="btn btn-success">Complete registration</button>--%>
-<%--            </form>           --%>
-            <form action="/sign-in-first/sign-in-first" method="get">
+            <form action="/first-sign-in/sign-in-first" method="get">
                 <button type="submit" class="btn btn-success">Login</button>
             </form>
         </div>
