@@ -39,16 +39,36 @@ public class SendEmailServiceImpl implements SendEmailService {
             messageHelper.setTo(recipient);
             messageHelper.setSubject("Sample mail subject");
 
-            String content = mailContentBuilder.build(message);
+            String content = mailContentBuilder.buildSimpleMessageContent(message, "confirmProfileEmail");
             messageHelper.setText(content, true);
         };
 
+        sendEmail(recipient, messagePreparator);
+
+    }
+
+    private void sendEmail(String recipient, MimeMessagePreparator messagePreparator) {
         try {
             mailSender.send(messagePreparator);
             LOGGER.info("Send mail to {}", recipient);
         } catch (MailException e) {
             LOGGER.error("Exception during send email to {}", recipient, e);
         }
+    }
+
+
+    @Override
+    public void activationEmail(String recipient, String confirmationToken) {
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(recipient);
+            messageHelper.setSubject("Confirmation email");
+
+            String content = mailContentBuilder.buildSimpleMessageContent("http://localhost:8082/confirm-account?token=" + confirmationToken, "confirmationTokenMail");
+            messageHelper.setText(content, true);
+        };
+
+        sendEmail(recipient, messagePreparator);
 
     }
 }

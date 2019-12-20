@@ -1,5 +1,6 @@
-package com.myresume.config;
+package com.myresume.config.securityConfig;
 
+import com.myresume.entity.CurrentProfile;
 import com.myresume.entity.Profile;
 import com.myresume.service.FindProfileService;
 import com.myresume.utils.Constants;
@@ -38,9 +39,11 @@ public class AuthProvider implements AuthenticationProvider {
                 throw new BadCredentialsException("Wrong password");
             }
 
+            final CurrentProfile currentProfile = new CurrentProfile(profile);
+
             GrantedAuthority grantedAuthority = () -> Constants.USER;
             final UsernamePasswordAuthenticationToken authenticationToken =
-                    new UsernamePasswordAuthenticationToken(profile, password, Collections.singleton(grantedAuthority));
+                    new UsernamePasswordAuthenticationToken(currentProfile, password, Collections.singleton(grantedAuthority));
 
             SecurityContext sc = SecurityContextHolder.getContext();
             sc.setAuthentication(authenticationToken);

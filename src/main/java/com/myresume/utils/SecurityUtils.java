@@ -15,8 +15,10 @@ public final class SecurityUtils {
         }
 
         final Object principal = authentication.getPrincipal();
-        if (principal instanceof CurrentProfile) {
-            return ((CurrentProfile) principal);
+        if(principal instanceof CurrentProfile) {
+            return (CurrentProfile) principal;
+        } else if(principal instanceof Profile) {
+            return new CurrentProfile((Profile) principal);
         } else {
             return null;
         }

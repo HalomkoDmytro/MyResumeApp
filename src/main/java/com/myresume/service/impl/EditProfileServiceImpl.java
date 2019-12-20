@@ -1,6 +1,7 @@
 package com.myresume.service.impl;
 
 import com.myresume.entity.Certificate;
+import com.myresume.entity.ConfirmationToken;
 import com.myresume.entity.Contacts;
 import com.myresume.entity.Course;
 import com.myresume.entity.Education;
@@ -15,6 +16,7 @@ import com.myresume.exceptions.ProfileNotFound;
 import com.myresume.form.GeneralInfoForm;
 import com.myresume.form.SignUpForm;
 import com.myresume.form.SkillForm;
+import com.myresume.repository.dao.ConfirmationTokenRepository;
 import com.myresume.repository.dao.CourseRepository;
 import com.myresume.repository.dao.EducationRepository;
 import com.myresume.repository.dao.HobbyRepository;
@@ -25,6 +27,7 @@ import com.myresume.repository.dao.SkillCategoryRepository;
 import com.myresume.repository.dao.SkillRepository;
 import com.myresume.repository.search.ProfileSearchRepository;
 import com.myresume.service.EditProfileService;
+import com.myresume.service.SendEmailService;
 import com.myresume.utils.DataUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
@@ -85,6 +88,12 @@ public class EditProfileServiceImpl implements EditProfileService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    private SendEmailService sendEmailService;
+
     @Value("${profile.max.hobbies}")
     private int maxProfileHobbies;
 
@@ -114,6 +123,11 @@ public class EditProfileServiceImpl implements EditProfileService {
 
         profileRepository.save(profile);
         registerCreateIndexProfileIfTransactionSuccess(profile);
+
+        final ConfirmationToken confirmationToken = new ConfirmationToken(profile);
+        confirmationTokenRepository.save(confirmationToken);
+        sendEmailService.activationEmail(profile.getEmail(), confirmationToken.getConfirmationToken());
+
         return profile;
     }
 

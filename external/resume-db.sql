@@ -82,8 +82,18 @@ CREATE TABLE course (
     finish_date date
 );
 
+CREATE TABLE confirmation_token (
+    id bigint NOT NULL,
+    id_profile bigint NOT NULL,
+    confirmation_token VARCHAR(255),
+    date date,
+    PRIMARY KEY (id)
+);
+
 
 ALTER TABLE course OWNER TO resume;
+
+ALTER TABLE confirmation_token OWNER TO resume;
 
 --
 -- TOC entry 199 (class 1259 OID 16787)
@@ -99,6 +109,16 @@ CREATE SEQUENCE course_seq
 
 
 ALTER TABLE course_seq OWNER TO resume;
+
+CREATE SEQUENCE confirmation_token_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE confirmation_token_seq OWNER TO resume;
 
 --
 -- TOC entry 195 (class 1259 OID 16768)
@@ -770,6 +790,9 @@ ALTER TABLE ONLY certificate
 
 ALTER TABLE ONLY course
     ADD CONSTRAINT course_fk FOREIGN KEY (id_profile) REFERENCES profile(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY confirmation_token
+    ADD CONSTRAINT confirmation_token_fk FOREIGN KEY (id_profile) REFERENCES profile(id) ON UPDATE CASCADE ;
 
 
 --
