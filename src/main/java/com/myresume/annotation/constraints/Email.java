@@ -18,6 +18,8 @@ public @interface Email {
 
     int maxSize() default 100;
 
+    int minSize() default 3;
+
     Class<? extends Payload>[] payload() default {};
 
     Class<?>[] groups() default {};
