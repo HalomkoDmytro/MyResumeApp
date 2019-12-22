@@ -6,19 +6,26 @@
 <header style="margin-bottom: 20px;">
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/welcome">My Resume</a>
-        <form action="/profile/search" method="post" class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <c:if test="${pageContext.request.userPrincipal.name == null}">
-                <a href="/sign-in">Sign in</a>|<a href="/sign-up">Registration</a>
-            </c:if>&nbsp;
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <a href="/sign-out">Sign out</a>
-                <input type="hidden"
-                       name="${_csrf.parameterName}"
-                       value="${_csrf.token}"/>
-            </c:if>
-        </form>
 
+        <div class="form-inline">
+            <form action="/profile/search" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <div class="col ">
+                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                    <a href="/sign-in">Sign in</a>|<a href="/sign-up">Registration</a>
+                </c:if>&nbsp;
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <form action="/sign-out" method="POST">
+                        <a href="#" onclick="$(this).closest('form').submit()">Sign out</a>
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                    </form>
+                </c:if>
+            </div>
+        </div>
     </nav>
 </header>
