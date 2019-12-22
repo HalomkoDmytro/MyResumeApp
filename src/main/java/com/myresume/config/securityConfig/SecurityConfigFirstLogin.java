@@ -50,7 +50,7 @@ public class SecurityConfigFirstLogin extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/edit/edit-personal-info")
                 .failureUrl("/sign-in-failed");
 //
-                http.logout()
+        http.logout()
                 .logoutUrl("/sign-out")
                 .logoutSuccessUrl("/welcome")
                 .invalidateHttpSession(true)
@@ -76,7 +76,8 @@ public class SecurityConfigFirstLogin extends WebSecurityConfigurerAdapter {
 //        return new BCryptPasswordEncoder(); //todo
         return NoOpPasswordEncoder.getInstance();
     }
-//
+
+    //
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider);

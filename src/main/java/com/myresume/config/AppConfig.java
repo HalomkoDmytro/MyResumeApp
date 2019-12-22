@@ -19,6 +19,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Configuration
 @PropertySource({"classpath:logic.properties"})
@@ -74,6 +76,11 @@ public class AppConfig extends SpringBootServletInitializer {
         dataSource.setInitialSize(Integer.parseInt(environment.getRequiredProperty("spring.datasource.dbcp2.initial-size")));
         dataSource.setMaxTotal(Integer.parseInt(environment.getRequiredProperty("spring.datasource.dbcp2.max-total")));
         return dataSource;
+    }
+
+    @Bean
+    public ExecutorService fixedThreadPool() {
+        return Executors.newFixedThreadPool(5);
     }
 
 }
