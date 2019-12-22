@@ -62,7 +62,7 @@ public class SecurityConfig
                 .key("resume-online")
                 .tokenRepository(persistentTokenRepository());
 
-        http.csrf().disable();
+//        http.csrf().disable();
     }
 
     @Bean
@@ -86,15 +86,15 @@ public class SecurityConfig
 
 
 
-
-    @Bean
-    public SecurityContextHolderAwareRequestFilter awareRequestFilter() {
-        return new SecurityContextHolderAwareRequestFilter();
-    }
-
-    @Bean
-    public SecurityContextPersistenceFilter persistenceFilter() {
-        return new SecurityContextPersistenceFilter();
-    }
+//
+//    @Bean
+//    public SecurityContextHolderAwareRequestFilter awareRequestFilter() {
+//        return new SecurityContextHolderAwareRequestFilter();
+//    }
+//
+//    @Bean
+//    public SecurityContextPersistenceFilter persistenceFilter() {
+//        return new SecurityContextPersistenceFilter();
+//    }
 }
 

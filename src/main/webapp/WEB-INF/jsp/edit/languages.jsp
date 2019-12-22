@@ -11,6 +11,7 @@
         </div>
 
         <form:form action="/edit/languages" method="post" modelAttribute="courseFrom">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <div class="card-body">
                 <div>

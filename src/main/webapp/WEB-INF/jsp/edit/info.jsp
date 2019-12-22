@@ -9,6 +9,8 @@
             <edit-profile:edit-nav-tabs/>
         </div>
         <form:form action="/edit/info" method="post" modelAttribute="infoForm">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
             <div class="card-body">
                 <div>
                     <h2 class="text-center">Info</h2>

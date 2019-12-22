@@ -14,6 +14,9 @@
             </c:if>&nbsp;
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <a href="/sign-out">Sign out</a>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
             </c:if>
         </form>
 

@@ -248,6 +248,7 @@ public class EditProfileServiceImpl implements EditProfileService {
         profile.setSmallPhoto(form.getSmallPhoto());
         profile.setPhone(form.getPhone());
         profile.setSummary(form.getSummary());
+        profile.setObjective(form.getObjective());
 
         profileRepository.save(profile);
     }

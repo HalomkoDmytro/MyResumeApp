@@ -12,6 +12,8 @@
         </div>
 
         <form:form action="/edit/practical-experience" method="post" modelAttribute="practicForm">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
             <div class="card-body">
                 <div>
                     <h2 class="text-center">Practical experience</h2>

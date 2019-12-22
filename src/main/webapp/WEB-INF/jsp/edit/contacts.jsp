@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <form:form action="/edit/contacts" method="post" modelAttribute="contacts">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     <div class="container">
         <div class="card border-primary mb-3 mx-auto">

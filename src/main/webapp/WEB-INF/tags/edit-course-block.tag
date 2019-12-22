@@ -13,6 +13,7 @@
     </div>
 
     <div class="form-group">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="row">
             <div class="col">
                 <b>Name course</b><br>

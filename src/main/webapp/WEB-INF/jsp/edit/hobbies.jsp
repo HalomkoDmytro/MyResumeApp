@@ -14,6 +14,8 @@
             <edit-profile:edit-nav-tabs/>
         </div>
         <form:form action="/edit/hobbies" method="post" modelAttribute="hobbyForm">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
             <div class="card-body">
                 <div>
                     <h2 class="text-center">Hobbies</h2>

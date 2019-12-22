@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <form:form action="/edit/edit-personal-info" method="post" modelAttribute="profile">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 <div>
 

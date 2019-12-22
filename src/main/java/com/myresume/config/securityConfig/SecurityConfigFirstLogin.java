@@ -61,7 +61,7 @@ public class SecurityConfigFirstLogin extends WebSecurityConfigurerAdapter {
                 .key("resume-online")
                 .tokenRepository(persistentTokenRepository());
 
-        http.csrf().disable();
+//        http.csrf().disable();
     }
 
     @Bean

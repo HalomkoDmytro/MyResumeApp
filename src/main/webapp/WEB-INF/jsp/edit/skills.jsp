@@ -19,6 +19,8 @@
                 </div>
             </div>
             <form:form action="/edit/skills" method="post" modelAttribute="skillForm">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
                 <div id="ui-block-container">
                     <c:forEach var="skill" items="${skillForm.items}" varStatus="status">
                         <resume:edit-skill-block index="${status.index}" skill="${skill}"/>

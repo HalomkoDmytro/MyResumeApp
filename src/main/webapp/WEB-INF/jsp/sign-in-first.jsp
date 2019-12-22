@@ -8,6 +8,9 @@
     <div class=" text-white bg-primary card-header"><i class="fa fa-user-o" aria-hidden="true"></i>First Sign in</div>
     <div class="card-body ">
         <form action="/first-sign-in/sign-in-first-handler" method="post">
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
             <c:if test="${sessionScope.SPRING_SECURITY_LAST_EXCEPTION != null}">
                 <div class="alert alert-danger" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

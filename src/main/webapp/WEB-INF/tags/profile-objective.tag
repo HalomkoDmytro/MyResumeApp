@@ -10,6 +10,6 @@
     </div>
     <div class="card-body ">
 <!--        <h5 class="card-title">Primary card title</h5>-->
-        <p class="card-text">${profile.summary}</p>
+        <p class="card-text">${profile.objective}</p>
     </div>
 </div>

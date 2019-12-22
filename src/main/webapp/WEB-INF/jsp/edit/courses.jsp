@@ -12,6 +12,8 @@
         </div>
 
         <form:form action="/edit/courses" method="post" modelAttribute="courseFrom">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
             <div class="card-body">
                 <div>
                     <h2 class="text-center">Professional courses </h2>

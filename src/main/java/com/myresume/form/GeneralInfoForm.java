@@ -50,9 +50,11 @@ public class GeneralInfoForm {
     @EnglishLanguage
     private String email;
 
-    @EnglishLanguage
-    private String summary;
 
     @EnglishLanguage
     private String objective;
+
+    @EnglishLanguage
+    private String summary;
+
 }
