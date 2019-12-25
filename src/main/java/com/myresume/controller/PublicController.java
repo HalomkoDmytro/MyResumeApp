@@ -6,7 +6,6 @@ import com.myresume.repository.dao.SkillCategoryRepository;
 import com.myresume.service.FindProfileService;
 import com.myresume.service.impl.NameService;
 import com.myresume.service.impl.ProfileService;
-import com.myresume.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,14 +53,14 @@ public class PublicController {
         return "index";
     }
 
-    @GetMapping({"/profile"})
+    @GetMapping({"/profile"}) //todo to be deleted
     public String profile() {
         return "jsp/profile";
     }
 
     @RequestMapping("/welcome")
     public String welcome(Model model) {
-        Page<Profile> page = findProfileService.findAll(PageRequest.of(0, MAX_PROFILE_PER_PAGE));
+        final Page<Profile> page = findProfileService.findAll(PageRequest.of(0, MAX_PROFILE_PER_PAGE));
         final List<Profile> profiles = page.getContent();
         model.addAttribute("page", page);
         model.addAttribute("profiles", profiles);
