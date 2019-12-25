@@ -2,6 +2,7 @@ package com.myresume.config;
 
 import com.myresume.filter.CustomSiteMashFilter;
 import com.myresume.filter.ErrorFilter;
+import com.myresume.filter.XSSFilter;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,8 +50,17 @@ public class AppConfig extends SpringBootServletInitializer {
         FilterRegistrationBean<ErrorFilter> errorFilter = new FilterRegistrationBean<>();
         errorFilter.setFilter(new ErrorFilter(isProduction));
         errorFilter.addUrlPatterns("/*");
-        errorFilter.setOrder(1);
+        errorFilter.setOrder(2);
         return errorFilter;
+    }
+
+    @Bean
+    public FilterRegistrationBean<XSSFilter> XssFilter() {
+        FilterRegistrationBean<XSSFilter> xssFilter = new FilterRegistrationBean<>();
+        xssFilter.setFilter(new XSSFilter());
+        xssFilter.addUrlPatterns("/*");
+        xssFilter.setOrder(10);
+        return xssFilter;
     }
 
     @Bean
