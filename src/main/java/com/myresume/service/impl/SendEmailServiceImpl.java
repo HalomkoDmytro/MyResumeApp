@@ -5,7 +5,6 @@ import com.myresume.service.SendEmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -30,50 +29,18 @@ public class SendEmailServiceImpl implements SendEmailService {
 
     @Override
     public void prepareAndSend(String recipient, String message) {
-//        MimeMessagePreparator messagePreparator = mimeMessage -> {
-//            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-//            messageHelper.setTo(recipient);
-//            messageHelper.setSubject("Sample mail subject");
-//
-//            String content = mailContentBuilder.buildSimpleMessageContent(message, "confirmProfileEmail");
-//            messageHelper.setText(content, true);
-//        };
-//
-//        sendEmail(recipient, messagePreparator);
-
         String content = mailContentBuilder.buildSimpleMessageContent(message, "confirmProfileEmail");
         final EmailModel emailModel = new EmailModel(recipient, "Sample mail subject", content);
         final EmailItem emailItem = new EmailItem(emailModel, 3);
         executorService.submit(emailItem);
-
     }
-//
-//    private void sendEmail(String recipient, MimeMessagePreparator messagePreparator) {
-//        try {
-//            mailSender.send(messagePreparator);
-//            LOGGER.info("Send mail to {}", recipient);
-//        } catch (MailException e) {
-//            LOGGER.error("Exception during send email to {}", recipient, e);
-//        }
-//    }
-
 
     @Override
     public void activationEmail(String recipient, String confirmationToken) {
-//        MimeMessagePreparator messagePreparator = mimeMessage -> {
-//            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-//            messageHelper.setTo(recipient);
-//            messageHelper.setSubject("Confirmation email");
-//
-//            messageHelper.setText(content, true);
-//        };
         String content = mailContentBuilder.buildSimpleMessageContent(confirmationToken, "confirmationTokenMail");
         final EmailModel emailModel = new EmailModel(recipient, "onfirmation email", content);
         final EmailItem emailItem = new EmailItem(emailModel, 3);
         executorService.submit(emailItem);
-
-//        sendEmail(recipient, messagePreparator);
-
     }
 
     private class EmailItem implements Runnable {
@@ -105,12 +72,11 @@ public class SendEmailServiceImpl implements SendEmailService {
                 LOGGER.info("Send mail to {}", emailMessage.getRecipient());
             } catch (MailException ex) {
                 tryCount--;
-                if(tryCount > 0) {
+                if (tryCount > 0) {
                     send();
                 }
                 LOGGER.error("Exception during send email to {}. Email not send.", emailMessage.getRecipient(), ex);
             }
         }
-
     }
 }

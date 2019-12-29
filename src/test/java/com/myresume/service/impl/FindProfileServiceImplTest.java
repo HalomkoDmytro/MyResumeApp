@@ -35,15 +35,6 @@ public class FindProfileServiceImplTest {
     private static final String FIRST_NAME_2 = "Arkadi";
     private static final String LAST_NAME_1 = "Parker";
     private static final String LAST_NAME_2 = "Pirozkov";
-//    private static final String OBJECTIVE_1 = "";
-//    private static final String SUMMARY_1 = "";
-//    private static final String INFO_1 = "";
-//    private static final String CERTIFICATE_NAME_1 = "";
-//    private static final String LANGUAGE_NAME_1 = "";
-//    private static final String PRACTICE_COMPANY_1 = "";
-//    private static final String PRACTICE_POSITION_1 = "";
-//    private static final String PRACTICE_RESPONSIBILITIES_1 = "";
-//    private static final String SKILL_VALUE_1 = "";
     private static final boolean COMPLETED_1 = true;
     private static final boolean COMPLETED_2 = true;
 
